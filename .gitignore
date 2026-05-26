@@ -1,0 +1,72 @@
+# ============================================================
+# MetroVision AI — .gitignore
+# ============================================================
+
+# ────────────── Ambiente e Segredos ──────────────
+.env
+*.env.local
+
+# ────────────── Python ──────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# ────────────── Ambientes Virtuais ──────────────
+venv/
+.venv/
+env/
+ENV/
+
+# ────────────── Dados Gerados em Runtime ──────────────
+# Planilhas de relatório geradas pelo ciclo de captura
+relatorio_contagem.xlsx
+
+# Capturas de frames geradas automaticamente pela aplicação
+media/capturas/
+temp_frames/
+temp_block_frames/
+
+# Frames extraídos de vídeos (dados intermediários)
+media/images/
+
+# ────────────── Vídeos Locais (grandes demais para Git) ──────────────
+media/videos/*.mp4
+media/videos/*.avi
+media/videos/*.mov
+media/videos/*.mkv
+media/videos/*.webm
+
+# ────────────── Node.js (pasta apresentacao/) ──────────────
+apresentacao/node_modules/
+apresentacao/package-lock.json
+
+# PowerPoint gerado (artefato de build, não código-fonte)
+apresentacao/*.pptx
+
+# ────────────── IDE e Editor ──────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ────────────── PyTorch / CUDA / Modelos ──────────────
+*.pt
+*.pth
+*.onnx
+*.safetensors
+checkpoints/
+
+# ────────────── Logs e Temporários ──────────────
+*.log
+*.tmp
+*.bak
