@@ -1,0 +1,16 @@
+{
+  "name": "apresentacao2",
+  "version": "1.0.0",
+  "description": "Apresentação simplificada do Projeto Contador",
+  "main": "apresentacao.js",
+  "scripts": {
+    "build": "node apresentacao.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
+}

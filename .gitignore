@@ -42,12 +42,15 @@ media/videos/*.mov
 media/videos/*.mkv
 media/videos/*.webm
 
-# ────────────── Node.js (pasta apresentacao/) ──────────────
+# ────────────── Node.js (pastas apresentacao e Apresentacao2) ──────────────
 apresentacao/node_modules/
 apresentacao/package-lock.json
+Apresentacao2/node_modules/
+Apresentacao2/package-lock.json
 
 # PowerPoint gerado (artefato de build, não código-fonte)
 apresentacao/*.pptx
+Apresentacao2/*.pptx
 
 # ────────────── IDE e Editor ──────────────
 .vscode/
