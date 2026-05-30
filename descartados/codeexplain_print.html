@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetroVision IA — Explicação Técnica do Código</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    --bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #4a4a6a;
+    --accent: #0066cc;
+    --accent-light: #e8f0fe;
+    --border: #e0e0e8;
+    --code-bg: #f5f5fa;
+    --table-header: #1a1a2e;
+    --table-stripe: #f8f8fc;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11pt;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 25mm 20mm;
+}
+
+h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--accent);
+    letter-spacing: -0.5px;
+    page-break-after: avoid;
+}
+
+h2 {
+    font-size: 15pt;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 28px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    page-break-after: avoid;
+}
+
+h3 {
+    font-size: 12pt;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 20px;
+    margin-bottom: 8px;
+    page-break-after: avoid;
+}
+
+p {
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+strong {
+    font-weight: 600;
+    color: var(--text);
+}
+
+em {
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 24px 0;
+}
+
+/* Code blocks */
+pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 14px 0;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+    font-size: 9pt;
+    line-height: 1.55;
+    page-break-inside: avoid;
+}
+
+code {
+    font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+    font-size: 9pt;
+    background: var(--code-bg);
+    padding: 2px 5px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: #c7254e;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    border: none;
+    color: var(--text);
+    font-size: 9pt;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+}
+
+thead th {
+    background: var(--table-header);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 9pt;
+    letter-spacing: 0.3px;
+}
+
+tbody td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+    background: var(--table-stripe);
+}
+
+tbody tr:hover {
+    background: var(--accent-light);
+}
+
+/* Lists */
+ul, ol {
+    margin: 8px 0 12px 24px;
+}
+
+li {
+    margin-bottom: 4px;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 12px 16px;
+    margin: 14px 0;
+    border-radius: 0 6px 6px 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* Print-specific */
+@media print {
+    body {
+        padding: 15mm;
+        max-width: 100%;
+    }
+    
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    pre, table, blockquote {
+        page-break-inside: avoid;
+    }
+    
+    .no-print {
+        display: none;
+    }
+}
+
+/* Print instruction banner */
+.print-banner {
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 13pt;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,102,204,0.3);
+}
+
+.print-banner small {
+    display: block;
+    font-size: 9pt;
+    font-weight: 400;
+    opacity: 0.85;
+    margin-top: 4px;
+}
+</style>
+</head>
+<body>
+    <div class="print-banner no-print">
+        📄 Pressione <strong>Ctrl+P</strong> para salvar como PDF
+        <small>Selecione "Salvar como PDF" na impressora e clique em Salvar</small>
+    </div>
+    <h1 id="metrovision-ia-explicacao-tecnica-do-codigo">MetroVision IA — Explicação Técnica do Código</h1>
+<h3 id="processamento-de-imagem-visao-computacional-dashboard-de-lotacao">Processamento de Imagem, Visão Computacional &amp; Dashboard de Lotação</h3>
+<hr />
+<h2 id="sumario">Sumário</h2>
+<ol>
+<li><a href="#1-arquitetura-e-estrutura-do-projeto">Arquitetura e Estrutura do Projeto</a></li>
+<li><a href="#2-aquisição-e-amostragem-de-imagem">Aquisição e Amostragem de Imagem</a></li>
+<li><a href="#3-conversão-de-espaço-de-cores">Conversão de Espaço de Cores</a></li>
+<li><a href="#4-redimensionamento-interpolação-e-anti-aliasing">Redimensionamento, Interpolação e Anti-Aliasing</a></li>
+<li><a href="#5-segmentação-semântica-zero-shot">Segmentação Semântica Zero-Shot</a></li>
+<li><a href="#6-feature-extraction-com-vision-transformer">Feature Extraction com Vision Transformer</a></li>
+<li><a href="#7-atenção-multi-head-e-otimização-sdpa">Atenção Multi-Head e Otimização SDPA</a></li>
+<li><a href="#8-grounding-texto-imagem-vlm">Grounding Texto-Imagem (VLM)</a></li>
+<li><a href="#9-detecção-de-instâncias">Detecção de Instâncias</a></li>
+<li><a href="#10-alpha-blending-e-compositing">Alpha Blending e Compositing</a></li>
+<li><a href="#11-otimização-de-pipeline-gpu">Otimização de Pipeline GPU</a></li>
+<li><a href="#12-latência-e-processamento-em-tempo-real">Latência e Processamento em Tempo Real</a></li>
+<li><a href="#13-persistência-em-json-e-dashboard-em-tempo-real">Persistência em JSON e Dashboard em Tempo Real</a></li>
+<li><a href="#14-mapeamento-consolidado">Mapeamento Consolidado</a></li>
+</ol>
+<hr />
+<h2 id="1-arquitetura-e-estrutura-do-projeto">1. Arquitetura e Estrutura do Projeto</h2>
+<p>O projeto utiliza uma arquitetura modular distribuída em pacotes Python dentro do diretório <code>src/camera_segmenter/</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ProjetoContador</span><span class="o">/</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">videoreal</span><span class="o">.</span><span class="n">py</span><span class="w">                     </span><span class="c1"># Ponto de entrada principal (launcher)</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">dashboard</span><span class="o">.</span><span class="n">html</span><span class="w">                   </span><span class="c1"># Painel HTML5 de lotação em tempo real</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">relatorio_contagem</span><span class="o">.</span><span class="n">json</span><span class="w">          </span><span class="c1"># Banco de dados de medições (JSON)</span>
+<span class="err">│</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">src</span><span class="o">/</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">camera_segmenter</span><span class="o">/</span>
+<span class="err">│</span><span class="w">       </span><span class="err">├──</span><span class="w"> </span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span><span class="w">              </span><span class="c1"># Expõe a API pública do pacote</span>
+<span class="err">│</span><span class="w">       </span><span class="err">├──</span><span class="w"> </span><span class="n">patch</span><span class="o">.</span><span class="n">py</span><span class="w">                 </span><span class="c1"># Otimização SDPA / FlashAttention</span>
+<span class="err">│</span><span class="w">       </span><span class="err">├──</span><span class="w"> </span><span class="n">config</span><span class="o">.</span><span class="n">py</span><span class="w">                </span><span class="c1"># Variáveis de ambiente e constantes</span>
+<span class="err">│</span><span class="w">       </span><span class="err">├──</span><span class="w"> </span><span class="n">visualization</span><span class="o">.</span><span class="n">py</span><span class="w">         </span><span class="c1"># Renderização de máscaras (Alpha Blending)</span>
+<span class="err">│</span><span class="w">       </span><span class="err">├──</span><span class="w"> </span><span class="n">json_db</span><span class="o">.</span><span class="n">py</span><span class="w">               </span><span class="c1"># Persistência JSON + exportação JS</span>
+<span class="err">│</span><span class="w">       </span><span class="err">└──</span><span class="w"> </span><span class="n">gui</span><span class="o">.</span><span class="n">py</span><span class="w">                   </span><span class="c1"># Interface Tkinter + pipeline de inferência</span>
+<span class="err">│</span>
+<span class="err">└──</span><span class="w"> </span><span class="n">media</span><span class="o">/</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">capturas</span><span class="o">/</span><span class="w">                    </span><span class="c1"># Imagens capturadas com ID único</span>
+<span class="w">    </span><span class="err">└──</span><span class="w"> </span><span class="n">dados_dashboard</span><span class="o">.</span><span class="n">js</span><span class="w">           </span><span class="c1"># Dados sincronizados para o HTML</span>
+</code></pre></div>
+
+<p>O fluxo de dados segue o pipeline clássico de visão computacional:</p>
+<div class="highlight"><pre><span></span><code>Câmera/Vídeo → Aquisição → Conversão de Cores → Redimensionamento
+    → Extração de Features (ViT) → Grounding Texto-Imagem (CLIP)
+    → Segmentação (Máscaras + Boxes) → Alpha Blending → Exibição + JSON
+</code></pre></div>
+
+<hr />
+<h2 id="2-aquisicao-e-amostragem-de-imagem">2. Aquisição e Amostragem de Imagem</h2>
+<p><strong>Conceito:</strong> A aquisição de imagem é o primeiro passo de qualquer sistema de visão computacional. Consiste em converter a cena física em uma representação digital matricial.</p>
+<p><strong>Implementação:</strong> O OpenCV (<code>cv2.VideoCapture</code>) conecta-se ao dispositivo de captura (webcam ou arquivo de vídeo) e amostra quadros continuamente.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — _init_camera_thread()</span>
+<span class="c1"># Conexão e inicialização do dispositivo de captura</span>
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">cam_idx</span><span class="p">)</span>
+
+<span class="c1"># Configuração da resolução de entrada para 480p</span>
+<span class="n">cap</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">,</span> <span class="mi">854</span><span class="p">)</span>
+<span class="n">cap</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>
+</code></pre></div>
+
+<p>O loop principal de aquisição opera a cada <strong>30 milissegundos</strong> (~33 FPS), garantindo uma taxa de amostragem temporal adequada para monitoramento em tempo real:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — update_camera_loop()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">update_camera_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># Aquisição contínua do quadro (frame) da câmera</span>
+    <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_raw_frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_live_feed</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">display_opencv_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+
+    <span class="c1"># Mantém atualizando com intervalo regulado de 30ms</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_camera_loop</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Detalhes técnicos:</strong>
+- O <code>frame</code> retornado é um <strong>array NumPy tridimensional</strong> de forma <code>(H, W, 3)</code>, onde cada pixel contém 3 canais de 8 bits (uint8).
+- O método <code>self.after(30, ...)</code> do Tkinter agenda a próxima chamada em 30ms, criando um ciclo de amostragem temporal consistente.
+- O <code>frame.copy()</code> garante que o snapshot para processamento é independente do buffer da câmera.</p>
+<hr />
+<h2 id="3-conversao-de-espaco-de-cores">3. Conversão de Espaço de Cores</h2>
+<p><strong>Conceito:</strong> O OpenCV armazena imagens no espaço de cores <strong>BGR</strong> (Blue-Green-Red), enquanto a PIL, o SAM 3.1 e a maioria dos modelos de visão computacional esperam <strong>RGB</strong> (Red-Green-Blue). Ignorar esta diferença causa inversão nos canais de cor.</p>
+<p><strong>Implementação na exibição ao vivo:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — display_opencv_frame()</span>
+<span class="c1"># Converte de BGR (Padrão OpenCV) para RGB (Padrão PIL/GUI/SAM 3.1)</span>
+<span class="n">rgb_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+<span class="n">pil_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">rgb_frame</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Implementação no pipeline de segmentação:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — _process_snapshot_thread()</span>
+<span class="c1"># Conversão de cores BGR -&gt; RGB do frame estático capturado</span>
+<span class="n">cv_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+<span class="n">orig_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">cv_img</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Implementação na visualização de máscaras:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># visualization.py — draw_results()</span>
+<span class="c1"># Converte a imagem PIL para array numpy (BGR) para processamento rápido</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">original_img</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2BGR</span><span class="p">)</span>
+
+<span class="c1"># ... (processamento das máscaras) ...</span>
+
+<span class="c1"># Retorna convertendo de BGR de volta para RGB</span>
+<span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Conexão teórica:</strong> Conversão de espaço de cores é um tópico fundamental em Processamento de Imagem. Outros espaços relevantes incluem <strong>HSV</strong> (para segmentação por cor) e <strong>YCrCb</strong> (para compressão de vídeo como JPEG e H.264).</p>
+<hr />
+<h2 id="4-redimensionamento-interpolacao-e-anti-aliasing">4. Redimensionamento, Interpolação e Anti-Aliasing</h2>
+<p><strong>Conceito:</strong> Para controlar a relação entre qualidade e velocidade de inferência, o projeto redimensiona cada frame antes de enviá-lo ao modelo. O filtro <strong>LANCZOS</strong> minimiza aliasing ao atuar como filtro passa-baixa antes da subamostragem.</p>
+<p><strong>Implementação:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — _process_snapshot_thread()</span>
+<span class="c1"># Cálculo proporcional mantendo aspect ratio</span>
+<span class="n">target_w</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="p">(</span><span class="n">target_h</span> <span class="o">/</span> <span class="n">h</span><span class="p">))</span>
+<span class="n">target_w</span> <span class="o">=</span> <span class="p">(</span><span class="n">target_w</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>   <span class="c1"># Garante dimensões pares para o encoder</span>
+<span class="n">target_h</span> <span class="o">=</span> <span class="p">(</span><span class="n">target_h</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
+
+<span class="c1"># Reamostragem LANCZOS atuando como filtro passa-baixa anti-aliasing</span>
+<span class="n">working_img</span> <span class="o">=</span> <span class="n">orig_img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">target_w</span><span class="p">,</span> <span class="n">target_h</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">Resampling</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Por que isso importa para o desempenho?</strong></p>
+<p>A complexidade computacional dos Vision Transformers é proporcional ao <strong>quadrado</strong> do número de tokens de imagem. Ao reduzir a resolução de 480px para 240px de altura (fator ~2x), o número de patches de imagem cai aproximadamente <strong>4x</strong>, reduzindo dramaticamente o custo da atenção.</p>
+<p><strong>Conexão teórica:</strong> Redimensionamento pertence ao tópico de <strong>Amostragem e Reconstrução de Sinais</strong> (Teorema de Nyquist-Shannon aplicado a imagens 2D). O filtro LANCZOS (sinc truncado) é um dos melhores filtros de reamostragem disponíveis, preservando bordas e texturas com fidelidade superior a interpolações bilineares ou nearest-neighbor.</p>
+<hr />
+<h2 id="5-segmentacao-semantica-zero-shot">5. Segmentação Semântica Zero-Shot</h2>
+<p><strong>Conceito:</strong> O núcleo do projeto é o modelo <strong>SAM 3.1</strong> (Segment Anything Model), que realiza segmentação semântica guiada por linguagem natural sem necessidade de treinamento específico para novos objetos (zero-shot).</p>
+<p><strong>Implementação:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — _process_snapshot_thread()</span>
+<span class="c1"># Inicialização da inferência zero-shot com SAM 3.1</span>
+<span class="n">state</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">processor</span><span class="o">.</span><span class="n">set_confidence_threshold</span><span class="p">(</span><span class="n">user_thresh</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">inference_mode</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">device</span> <span class="o">==</span> <span class="s2">&quot;cuda&quot;</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">autocast</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">):</span>
+            <span class="c1"># Vision Transformer Backbone extraindo mapa visual</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">processor</span><span class="o">.</span><span class="n">set_image</span><span class="p">(</span><span class="n">working_img</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+            <span class="c1"># Alinhamento multimodal texto-imagem via CLIP</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">processor</span><span class="o">.</span><span class="n">set_text_prompt</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+</code></pre></div>
+
+<p>O processo envolve duas etapas principais:</p>
+<ol>
+<li><strong><code>set_image()</code></strong> — O backbone ViT processa a imagem e gera um mapa de features de alta dimensão, codificando informação semântica, espacial e de textura.</li>
+<li><strong><code>set_text_prompt()</code></strong> — Um encoder de texto baseado em CLIP codifica o prompt (ex: "person") em um vetor semântico, que é alinhado com o feature map visual via atenção cruzada.</li>
+</ol>
+<p>O resultado são <strong>máscaras binárias</strong> para cada instância detectada, com suas respectivas <strong>bounding boxes</strong> e <strong>scores de confiança</strong>.</p>
+<hr />
+<h2 id="6-feature-extraction-com-vision-transformer">6. Feature Extraction com Vision Transformer</h2>
+<p><strong>Conceito:</strong> A extração de features é o processo de transformar pixels brutos em representações vetoriais de alta dimensão que codificam significado semântico. O SAM 3.1 utiliza um <strong>Vision Transformer (ViT)</strong> como backbone.</p>
+<p><strong>Implementação:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — _process_snapshot_thread()</span>
+<span class="c1"># Vision Transformer (ViT) Backbone extraindo o mapa visual de alta dimensão</span>
+<span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">processor</span><span class="o">.</span><span class="n">set_image</span><span class="p">(</span><span class="n">working_img</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Como funciona internamente:</strong></p>
+<ol>
+<li>A imagem é dividida em <strong>patches</strong> (blocos de 16×16 pixels tipicamente).</li>
+<li>Cada patch é projetado linearmente em um embedding vetorial.</li>
+<li>Positional embeddings são adicionados para preservar informação espacial.</li>
+<li>A sequência de embeddings passa por múltiplas camadas de <strong>self-attention</strong> e <strong>feed-forward networks</strong>.</li>
+<li>O resultado é um <strong>feature map denso</strong> onde cada posição codifica contexto global da imagem.</li>
+</ol>
+<hr />
+<h2 id="7-atencao-multi-head-e-otimizacao-sdpa">7. Atenção Multi-Head e Otimização SDPA</h2>
+<p><strong>Conceito:</strong> O mecanismo de atenção é o coração dos Transformers. Para cada token, computa:</p>
+<div class="highlight"><pre><span></span><code>Attention(Q, K, V) = softmax(QK^T / √d_k) × V
+</code></pre></div>
+
+<p>A multiplicação <code>QK^T</code> tem complexidade <strong>O(N²)</strong>, tornando-se o principal gargalo em imagens de alta resolução.</p>
+<p><strong>Implementação do patch de otimização:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># patch.py — apply_sdpa_patch()</span>
+<span class="c1"># Ativação de FlashAttention e Memory-Efficient SDP</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">enable_flash_sdp</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">enable_mem_efficient_sdp</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">enable_math_sdp</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Fallback dinâmico com restauração automática:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># patch.py — _safe_sdpa()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_safe_sdpa</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">attn_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dropout_p</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">is_causal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_original_sdpa</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>  <span class="c1"># Tenta FlashAttention</span>
+    <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;No available kernel&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+            <span class="c1"># Fallback temporário para MATH apenas nesta chamada</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">enable_flash_sdp</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">enable_mem_efficient_sdp</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">_original_sdpa</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+            <span class="c1"># Restaura kernels rápidos imediatamente</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">enable_flash_sdp</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">enable_mem_efficient_sdp</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">res</span>
+        <span class="k">raise</span>
+</code></pre></div>
+
+<p><strong>Comparação de backends SDPA:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Backend</th>
+<th>Mecanismo</th>
+<th>Velocidade</th>
+<th>VRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlashAttention</td>
+<td>Tiling otimizado por CUDA</td>
+<td>⚡⚡⚡ Máxima</td>
+<td>Mínima</td>
+</tr>
+<tr>
+<td>Memory-Efficient</td>
+<td>Recomputação de gradientes</td>
+<td>⚡⚡ Alta</td>
+<td>Baixa</td>
+</tr>
+<tr>
+<td>MATH</td>
+<td>Implementação PyTorch puro</td>
+<td>🐢 Lenta</td>
+<td>Alta</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resultado real:</strong> A otimização reduziu o tempo de inferência de <strong>24,82 segundos</strong> para <strong>0,43 segundos</strong> por frame — um ganho de <strong>≈ 58×</strong>.</p>
+<hr />
+<h2 id="8-grounding-texto-imagem-vlm">8. Grounding Texto-Imagem (VLM)</h2>
+<p><strong>Conceito:</strong> O grounding texto-imagem permite localizar regiões em uma imagem que correspondem a uma descrição textual. Combina um <strong>encoder de linguagem</strong> (CLIP) com o <strong>feature map visual</strong> do ViT através de atenção cruzada (<em>cross-attention</em>).</p>
+<p><strong>Implementação:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — _process_snapshot_thread()</span>
+<span class="c1"># Alinhamento multimodal texto-imagem do prompt usando o encoder CLIP</span>
+<span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">processor</span><span class="o">.</span><span class="n">set_text_prompt</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Fluxo interno:</strong></p>
+<ol>
+<li>O texto "person" é tokenizado e processado pelo encoder CLIP.</li>
+<li>O resultado é um vetor semântico de 512/768 dimensões.</li>
+<li>Este vetor é usado como <em>query</em> em um mecanismo de atenção cruzada contra os tokens visuais.</li>
+<li>O modelo localiza e segmenta apenas os pixels correspondentes ao conceito textual.</li>
+</ol>
+<hr />
+<h2 id="9-deteccao-de-instancias">9. Detecção de Instâncias</h2>
+<p><strong>Conceito:</strong> A detecção de instâncias identifica e separa individualmente cada objeto detectado, produzindo máscaras binárias, caixas delimitadoras e scores de confiança.</p>
+<p><strong>Implementação da extração de resultados:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — _process_snapshot_thread()</span>
+<span class="c1"># Extração das bounding boxes, máscaras binárias e scores</span>
+<span class="n">raw_scores</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;scores&quot;</span><span class="p">)</span>
+<span class="n">scores_np</span> <span class="o">=</span> <span class="n">raw_scores</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="n">num_detected</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">scores_np</span><span class="p">)</span>
+<span class="n">keep_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_detected</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Filtragem e separação por instância:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — _process_snapshot_thread()</span>
+<span class="c1"># Separação de caixas e máscaras filtradas por score</span>
+<span class="n">raw_masks</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;masks&quot;</span><span class="p">)</span>
+<span class="n">filtered_masks</span> <span class="o">=</span> <span class="n">raw_masks</span><span class="p">[</span><span class="n">keep_indices</span><span class="p">]</span>
+
+<span class="n">raw_boxes</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;boxes&quot;</span><span class="p">)</span>
+<span class="n">filtered_boxes</span> <span class="o">=</span> <span class="n">raw_boxes</span><span class="p">[</span><span class="n">keep_indices</span><span class="p">]</span>
+<span class="n">filtered_scores</span> <span class="o">=</span> <span class="n">raw_scores</span><span class="p">[</span><span class="n">keep_indices</span><span class="p">]</span>
+
+<span class="n">masked_pil</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw_results</span><span class="p">(</span><span class="n">orig_img</span><span class="p">,</span> <span class="n">filtered_masks</span><span class="p">,</span> <span class="n">filtered_boxes</span><span class="p">,</span> <span class="n">filtered_scores</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Cada instância detectada recebe:
+- <strong>Máscara binária</strong> <code>(H, W)</code> — indica quais pixels pertencem ao objeto.
+- <strong>Bounding box</strong> <code>[x1, y1, x2, y2]</code> — retângulo envolvente.
+- <strong>Score de confiança</strong> <code>[0.0, 1.0]</code> — grau de certeza do modelo.</p>
+<hr />
+<h2 id="10-alpha-blending-e-compositing">10. Alpha Blending e Compositing</h2>
+<p><strong>Conceito:</strong> Para visualizar as máscaras de segmentação sobre o frame original sem ocultá-lo, é aplicado <strong>Alpha Blending</strong> — uma operação aritmética de composição de imagens.</p>
+<p><strong>Fórmula geral:</strong></p>
+<div class="highlight"><pre><span></span><code>C_out = α × C_overlay + (1 − α) × C_background
+</code></pre></div>
+
+<p><strong>Implementação:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># visualization.py — draw_results()</span>
+<span class="c1"># Criação do overlay colorido por instância</span>
+<span class="n">overlay_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_detected</span><span class="p">):</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">masks</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">rgb</span> <span class="o">=</span> <span class="n">COLORS</span><span class="p">[</span><span class="n">idx</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">COLORS</span><span class="p">)]</span>
+    <span class="n">color_bgr</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">255</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">255</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">255</span><span class="p">))</span>
+    <span class="n">overlay_mask</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">color_bgr</span>
+    <span class="n">overlay_mask_bool</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Alpha Blending: 60% original, 40% cor da máscara (α = 0.4)</span>
+<span class="n">frame</span><span class="p">[</span><span class="n">overlay_mask_bool</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">frame</span><span class="p">[</span><span class="n">overlay_mask_bool</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.6</span> <span class="o">+</span>
+    <span class="n">overlay_mask</span><span class="p">[</span><span class="n">overlay_mask_bool</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.4</span>
+<span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Com <code>α = 0.4</code>, obtém-se transparência adequada para visualizar simultaneamente a textura original da pessoa e o destaque colorido da máscara. Cada instância recebe uma cor distinta de uma paleta de 9 cores de alto contraste.</p>
+<hr />
+<h2 id="11-otimizacao-de-pipeline-gpu">11. Otimização de Pipeline GPU</h2>
+<p><strong>Conceito:</strong> A precisão mista (mixed precision) permite que operações do modelo executem em <strong>bfloat16</strong> (16 bits) em vez de float32 (32 bits), dobrando o throughput nos Tensor Cores das GPUs NVIDIA RTX sem perda significativa de precisão.</p>
+<p><strong>Implementação:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — _process_snapshot_thread()</span>
+<span class="c1"># Execução com precisão mista bfloat16 acelerada por hardware (RTX)</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">autocast</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">):</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">processor</span><span class="o">.</span><span class="n">set_image</span><span class="p">(</span><span class="n">working_img</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">processor</span><span class="o">.</span><span class="n">set_text_prompt</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Medidas adicionais de gerenciamento de memória:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — _process_snapshot_thread()</span>
+<span class="c1"># LIMPEZA ESTRITA DE MEMÓRIA</span>
+<span class="n">state</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="k">del</span> <span class="n">state</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>                    <span class="c1"># Coleta de lixo imediata do Python</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">empty_cache</span><span class="p">()</span>        <span class="c1"># Libera cache de VRAM da GPU</span>
+</code></pre></div>
+
+<p>A combinação de <code>torch.inference_mode()</code> (desativa autograd), <code>torch.autocast</code> (bfloat16) e limpeza agressiva de memória garante que cada ciclo de processamento é eficiente e não acumula pressão sobre a VRAM limitada de GPUs laptop.</p>
+<hr />
+<h2 id="12-latencia-e-processamento-em-tempo-real">12. Latência e Processamento em Tempo Real</h2>
+<p><strong>Conceito:</strong> Um sistema de visão computacional é considerado "tempo real" quando sua latência de processamento por frame é inferior a 1 segundo, permitindo feedback contínuo ao operador.</p>
+<p><strong>Implementação da medição de latência:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — _process_snapshot_thread()</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># ... (pipeline completo de inferência) ...</span>
+
+<span class="c1"># Cálculo e log de latência do processamento por frame</span>
+<span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+<span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[MAPEAMENTO] Concluído em </span><span class="si">{</span><span class="n">elapsed</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s!&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Sistema de ciclo temporizado:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — tick_countdown()</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">time_left</span> <span class="o">-=</span> <span class="mf">0.1</span>
+<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_left</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">time_left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">is_processing</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">snapshot_frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_raw_frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># Processamento em thread separada para não bloquear o feed</span>
+    <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span>
+        <span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_process_snapshot_thread</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">snapshot_frame</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">video_time</span><span class="p">),</span>
+        <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</code></pre></div>
+
+<p>O ciclo de captura é configurável pelo usuário (1 a 60 segundos) e executa o processamento em uma <strong>thread separada</strong>, garantindo que o feed da câmera nunca congela durante a inferência do modelo.</p>
+<hr />
+<h2 id="13-persistencia-em-json-e-dashboard-em-tempo-real">13. Persistência em JSON e Dashboard em Tempo Real</h2>
+<p><strong>Conceito:</strong> O sistema utiliza um banco de dados JSON local com dupla exportação — arquivo <code>.json</code> para persistência e arquivo <code>.js</code> para sincronização em tempo real com o dashboard HTML.</p>
+<p><strong>Implementação do banco de dados:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># json_db.py — save_db()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_db</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">history</span><span class="p">):</span>
+    <span class="n">db_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;settings&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="p">,</span> <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="n">history</span><span class="p">}</span>
+
+    <span class="c1"># 1. Salvar arquivo JSON local</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">DB_PATH</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">db_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># 2. Exportar arquivo JS para contornar CORS no protocolo file://</span>
+    <span class="n">js_content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;window.METRO_DATA = </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">db_data</span><span class="p">,</span><span class="w"> </span><span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">JS_EXPORT_PATH</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">js_content</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Implementação da classificação de lotação:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># gui.py — save_to_json()</span>
+<span class="c1"># Determinar classificação de status com base nos parâmetros de metrô</span>
+<span class="k">if</span> <span class="n">count</span> <span class="o">&lt;=</span> <span class="n">capacity</span> <span class="o">*</span> <span class="p">(</span><span class="n">start_pct</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">):</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;Livre&quot;</span>
+<span class="k">elif</span> <span class="n">count</span> <span class="o">&lt;=</span> <span class="n">capacity</span><span class="p">:</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;Normal&quot;</span>
+<span class="k">elif</span> <span class="n">count</span> <span class="o">&lt;=</span> <span class="n">overcapacity</span><span class="p">:</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;Lotado&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;Superlotado&quot;</span>
+</code></pre></div>
+
+<p><strong>Sincronização em tempo real no Dashboard (HTML):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// dashboard.html — Polling com cache-busting a cada 1 segundo</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">reloadPythonData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">script</span><span class="p">.</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;media/dados_dashboard.js?t=&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span><span class="w"> </span><span class="c1">// cache-busting</span>
+<span class="w">    </span><span class="nx">script</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">METRO_DATA</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">processIncomingData</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">METRO_DATA</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">setInterval</span><span class="p">(</span><span class="nx">reloadPythonData</span><span class="p">,</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sincroniza a cada segundo</span>
+</code></pre></div>
+
+<p>O dashboard utiliza <strong>injeção dinâmica de tags <code>&lt;script&gt;</code></strong> com parâmetros de cache-busting (<code>?t=timestamp</code>) para garantir que o navegador sempre carrega a versão mais recente dos dados, mesmo operando via protocolo <code>file://</code> sem servidor web.</p>
+<hr />
+<h2 id="14-mapeamento-consolidado">14. Mapeamento Consolidado</h2>
+<table>
+<thead>
+<tr>
+<th>Tópico Formal</th>
+<th>TAG no Código</th>
+<th>Onde Aparece no Projeto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aquisição e Amostragem de Imagem</td>
+<td><code>[AQUISIÇÃO_E_AMOSTRAGEM]</code></td>
+<td><code>gui.py</code> — <code>VideoCapture</code>, <code>cap.read()</code>, 30ms</td>
+</tr>
+<tr>
+<td>Conversão de Espaço de Cores</td>
+<td><code>[CONVERSÃO_DE_ESPAÇO_DE_CORES]</code></td>
+<td><code>gui.py</code> + <code>visualization.py</code> — <code>cvtColor</code></td>
+</tr>
+<tr>
+<td>Redimensionamento e Interpolação</td>
+<td><code>[REDIMENSIONAMENTO_E_INTERPOLAÇÃO]</code></td>
+<td><code>gui.py</code> — <code>Image.resize()</code> com LANCZOS</td>
+</tr>
+<tr>
+<td>Anti-Aliasing e Subamostragem</td>
+<td><code>[ANTI_ALIASING_E_SUBAMOSTRAGEM]</code></td>
+<td><code>gui.py</code> — Filtro LANCZOS antes do downscale</td>
+</tr>
+<tr>
+<td>Segmentação Semântica</td>
+<td><code>[SEGMENTAÇÃO_SEMÂNTICA]</code></td>
+<td><code>gui.py</code> — SAM 3.1 com prompt de texto</td>
+</tr>
+<tr>
+<td>Feature Extraction (Deep Learning)</td>
+<td><code>[FEATURE_EXTRACTION]</code></td>
+<td><code>gui.py</code> — ViT Backbone no <code>set_image()</code></td>
+</tr>
+<tr>
+<td>Atenção Multi-Head (Transformer)</td>
+<td><code>[ATENÇÃO_MULTI_HEAD]</code></td>
+<td><code>patch.py</code> — SDPA / FlashAttention</td>
+</tr>
+<tr>
+<td>Grounding Texto-Imagem (VLM)</td>
+<td><code>[GROUNDING_TEXTO_IMAGEM]</code></td>
+<td><code>gui.py</code> — <code>set_text_prompt()</code> com CLIP</td>
+</tr>
+<tr>
+<td>Detecção de Instâncias</td>
+<td><code>[DETECÇÃO_DE_INSTÂNCIAS]</code></td>
+<td><code>gui.py</code> — Bounding Boxes + Masks</td>
+</tr>
+<tr>
+<td>Alpha Blending / Compositing</td>
+<td><code>[ALPHA_BLENDING_COMPOSITING]</code></td>
+<td><code>visualization.py</code> — <code>draw_results()</code> com α=0.4</td>
+</tr>
+<tr>
+<td>Otimização de Pipeline GPU</td>
+<td><code>[OTIMIZAÇÃO_DE_PIPELINE_GPU]</code></td>
+<td><code>gui.py</code> — FlashAttention + autocast bfloat16</td>
+</tr>
+<tr>
+<td>Latência e Tempo Real</td>
+<td><code>[LATÊNCIA_E_TEMPO_REAL]</code></td>
+<td><code>gui.py</code> — Inferência &lt; 1s/frame</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Documento gerado para o Projeto Contador — MetroVision IA</em>
+<em>Pipeline de Visão Computacional com SAM 3.1 e Dashboard de Lotação em Tempo Real</em></p>
+</body>
+</html>

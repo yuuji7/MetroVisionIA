@@ -1,0 +1,2100 @@
+{
+    "settings": {
+        "capacity_seats": 30,
+        "overcapacity_threshold": 42,
+        "absolute_max": 65,
+        "occupancy_start_pct": 30
+    },
+    "history": [
+        {
+            "id": "9c906851",
+            "timestamp": "2026-05-26 18:48:57",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_9c906851.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "241a2871",
+            "timestamp": "2026-05-26 18:48:59",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_241a2871.png",
+            "occupancy_pct": 60.0,
+            "status": "Normal"
+        },
+        {
+            "id": "47d37b65",
+            "timestamp": "2026-05-26 18:49:01",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_47d37b65.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "e3808a35",
+            "timestamp": "2026-05-26 18:49:03",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_e3808a35.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "1d9e3a35",
+            "timestamp": "2026-05-26 18:49:05",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_1d9e3a35.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "451569a1",
+            "timestamp": "2026-05-26 18:49:08",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_451569a1.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "e1233612",
+            "timestamp": "2026-05-26 18:49:10",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_e1233612.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "f744c71d",
+            "timestamp": "2026-05-26 18:49:12",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_f744c71d.png",
+            "occupancy_pct": 20.0,
+            "status": "Livre"
+        },
+        {
+            "id": "7673d023",
+            "timestamp": "2026-05-26 18:49:14",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_7673d023.png",
+            "occupancy_pct": 20.0,
+            "status": "Livre"
+        },
+        {
+            "id": "635a4e6c",
+            "timestamp": "2026-05-26 18:49:16",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_635a4e6c.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "92fbc8cc",
+            "timestamp": "2026-05-26 18:49:18",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_92fbc8cc.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "0f8b4f5e",
+            "timestamp": "2026-05-26 18:49:20",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_0f8b4f5e.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "a6cd9e3d",
+            "timestamp": "2026-05-26 18:49:22",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_a6cd9e3d.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "ed4dfc6c",
+            "timestamp": "2026-05-26 18:49:24",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_ed4dfc6c.png",
+            "occupancy_pct": 20.0,
+            "status": "Livre"
+        },
+        {
+            "id": "69aec717",
+            "timestamp": "2026-05-26 18:49:26",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_69aec717.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "dbb2abef",
+            "timestamp": "2026-05-26 18:49:28",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_dbb2abef.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "70256a56",
+            "timestamp": "2026-05-26 18:49:30",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_70256a56.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "29b431be",
+            "timestamp": "2026-05-26 18:49:32",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_29b431be.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "fb2e7f3d",
+            "timestamp": "2026-05-26 18:49:35",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_fb2e7f3d.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "519abb6b",
+            "timestamp": "2026-05-26 18:49:37",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_519abb6b.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "d032d035",
+            "timestamp": "2026-05-26 18:49:39",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_d032d035.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "729ad62d",
+            "timestamp": "2026-05-26 18:49:41",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_729ad62d.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "a78aef8d",
+            "timestamp": "2026-05-26 18:49:43",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_a78aef8d.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "36b423fc",
+            "timestamp": "2026-05-26 18:49:45",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_36b423fc.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "a41f8547",
+            "timestamp": "2026-05-26 18:49:47",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_a41f8547.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "82f23811",
+            "timestamp": "2026-05-26 18:49:49",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_82f23811.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "5ccf0257",
+            "timestamp": "2026-05-26 18:49:51",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_5ccf0257.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "54246f06",
+            "timestamp": "2026-05-26 18:49:53",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_54246f06.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "73e4f471",
+            "timestamp": "2026-05-26 18:49:55",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_73e4f471.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "6fcffa62",
+            "timestamp": "2026-05-26 18:49:56",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_6fcffa62.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "ab4c5027",
+            "timestamp": "2026-05-26 18:49:58",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_ab4c5027.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "18a4f038",
+            "timestamp": "2026-05-26 18:50:00",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_18a4f038.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "14e943c5",
+            "timestamp": "2026-05-26 18:50:02",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_14e943c5.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "b358a232",
+            "timestamp": "2026-05-26 18:50:04",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_b358a232.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "b3598374",
+            "timestamp": "2026-05-26 18:50:06",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_b3598374.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "597976fa",
+            "timestamp": "2026-05-26 18:50:08",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_597976fa.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "e2c3433a",
+            "timestamp": "2026-05-26 18:50:11",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_e2c3433a.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "0f72fe49",
+            "timestamp": "2026-05-26 18:50:12",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_0f72fe49.png",
+            "occupancy_pct": 40.0,
+            "status": "Normal"
+        },
+        {
+            "id": "74fb3cf4",
+            "timestamp": "2026-05-26 18:50:14",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_74fb3cf4.png",
+            "occupancy_pct": 200.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "eb1dda12",
+            "timestamp": "2026-05-26 18:50:16",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_eb1dda12.png",
+            "occupancy_pct": 200.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "0cfed9df",
+            "timestamp": "2026-05-26 18:50:18",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_0cfed9df.png",
+            "occupancy_pct": 200.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "2e461c9f",
+            "timestamp": "2026-05-26 18:50:20",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_2e461c9f.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "6b28dc67",
+            "timestamp": "2026-05-26 18:50:22",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_6b28dc67.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "0e4f51bd",
+            "timestamp": "2026-05-26 18:50:23",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_0e4f51bd.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "cedae1f4",
+            "timestamp": "2026-05-26 18:50:36",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_cedae1f4.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "5cd2ded5",
+            "timestamp": "2026-05-26 18:50:38",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_5cd2ded5.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "cb9db886",
+            "timestamp": "2026-05-26 18:50:39",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_cb9db886.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "546c54a8",
+            "timestamp": "2026-05-26 18:50:42",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_546c54a8.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "9cc72bac",
+            "timestamp": "2026-05-26 18:50:44",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_9cc72bac.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "7dd1e266",
+            "timestamp": "2026-05-26 18:50:46",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_7dd1e266.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "267a84e3",
+            "timestamp": "2026-05-26 18:50:48",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_267a84e3.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "741b91b0",
+            "timestamp": "2026-05-26 18:50:50",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_741b91b0.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "b16a7a08",
+            "timestamp": "2026-05-26 18:50:52",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_b16a7a08.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "f2490499",
+            "timestamp": "2026-05-26 18:50:55",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_f2490499.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "0542a3fa",
+            "timestamp": "2026-05-26 18:50:57",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_0542a3fa.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "ccd5a7fd",
+            "timestamp": "2026-05-26 18:50:59",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_ccd5a7fd.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "e2d63549",
+            "timestamp": "2026-05-26 18:51:01",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_e2d63549.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "125b0f41",
+            "timestamp": "2026-05-26 18:51:03",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_125b0f41.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "a35ef781",
+            "timestamp": "2026-05-26 18:51:05",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_a35ef781.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "6c813062",
+            "timestamp": "2026-05-26 18:51:07",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_6c813062.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "c4df07f8",
+            "timestamp": "2026-05-26 18:51:09",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_c4df07f8.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "6d1d0557",
+            "timestamp": "2026-05-26 18:51:11",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_6d1d0557.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "a1eac13e",
+            "timestamp": "2026-05-26 18:51:14",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_a1eac13e.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "adf6b632",
+            "timestamp": "2026-05-26 18:51:16",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_adf6b632.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "d2082b76",
+            "timestamp": "2026-05-26 18:51:18",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_d2082b76.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "009d9c99",
+            "timestamp": "2026-05-26 18:51:20",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_009d9c99.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "d7118f3a",
+            "timestamp": "2026-05-26 18:51:22",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_d7118f3a.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "1995caf0",
+            "timestamp": "2026-05-26 18:51:24",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_1995caf0.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "d20508e3",
+            "timestamp": "2026-05-26 18:51:26",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_d20508e3.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "2d13f9b5",
+            "timestamp": "2026-05-26 18:51:28",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_2d13f9b5.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "7bf4ea2e",
+            "timestamp": "2026-05-26 18:51:30",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_7bf4ea2e.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "08a9d110",
+            "timestamp": "2026-05-26 18:51:33",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_08a9d110.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "1021ca9d",
+            "timestamp": "2026-05-26 18:51:35",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_1021ca9d.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "9ac604af",
+            "timestamp": "2026-05-26 18:51:37",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_9ac604af.png",
+            "occupancy_pct": 100.0,
+            "status": "Normal"
+        },
+        {
+            "id": "9845e6e3",
+            "timestamp": "2026-05-26 18:51:39",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_9845e6e3.png",
+            "occupancy_pct": 100.0,
+            "status": "Normal"
+        },
+        {
+            "id": "b97e5b8d",
+            "timestamp": "2026-05-26 18:51:41",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_b97e5b8d.png",
+            "occupancy_pct": 100.0,
+            "status": "Normal"
+        },
+        {
+            "id": "a76b4d7b",
+            "timestamp": "2026-05-26 18:51:43",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_a76b4d7b.png",
+            "occupancy_pct": 100.0,
+            "status": "Normal"
+        },
+        {
+            "id": "c8b22831",
+            "timestamp": "2026-05-26 18:51:45",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_c8b22831.png",
+            "occupancy_pct": 100.0,
+            "status": "Normal"
+        },
+        {
+            "id": "695ba04a",
+            "timestamp": "2026-05-26 18:51:47",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_695ba04a.png",
+            "occupancy_pct": 100.0,
+            "status": "Normal"
+        },
+        {
+            "id": "0ba95fd0",
+            "timestamp": "2026-05-26 18:51:49",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_0ba95fd0.png",
+            "occupancy_pct": 100.0,
+            "status": "Normal"
+        },
+        {
+            "id": "57b05284",
+            "timestamp": "2026-05-26 18:51:51",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_57b05284.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "814765a9",
+            "timestamp": "2026-05-26 18:51:53",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_814765a9.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "54496509",
+            "timestamp": "2026-05-26 18:51:55",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_54496509.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "b5d3c5df",
+            "timestamp": "2026-05-26 18:51:57",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_b5d3c5df.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "3dba2a1f",
+            "timestamp": "2026-05-26 18:51:59",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_3dba2a1f.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "acabb0d1",
+            "timestamp": "2026-05-26 18:52:01",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_acabb0d1.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "71e2cdcc",
+            "timestamp": "2026-05-26 18:52:03",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_71e2cdcc.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "cca27640",
+            "timestamp": "2026-05-26 18:52:05",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_cca27640.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "dbd17f6d",
+            "timestamp": "2026-05-26 18:52:07",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_dbd17f6d.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "3e6b880b",
+            "timestamp": "2026-05-26 18:52:10",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_3e6b880b.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "112928af",
+            "timestamp": "2026-05-26 18:52:12",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_112928af.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "0f6710cd",
+            "timestamp": "2026-05-26 18:52:14",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_0f6710cd.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "bb920214",
+            "timestamp": "2026-05-26 18:52:16",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_bb920214.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "30356eb8",
+            "timestamp": "2026-05-26 18:52:18",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_30356eb8.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "77bcf995",
+            "timestamp": "2026-05-26 18:52:20",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_77bcf995.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "50de7530",
+            "timestamp": "2026-05-26 18:52:21",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_50de7530.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "adb7f88b",
+            "timestamp": "2026-05-26 18:52:23",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_adb7f88b.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "70ec9f38",
+            "timestamp": "2026-05-26 18:52:25",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_70ec9f38.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "77e6d34f",
+            "timestamp": "2026-05-26 18:52:27",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_77e6d34f.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "0ee051b9",
+            "timestamp": "2026-05-26 18:52:29",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_0ee051b9.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "d060109b",
+            "timestamp": "2026-05-26 18:52:31",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_d060109b.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "c14c4c85",
+            "timestamp": "2026-05-26 18:52:33",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_c14c4c85.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "bfdeb98f",
+            "timestamp": "2026-05-26 18:52:35",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_bfdeb98f.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "11494c38",
+            "timestamp": "2026-05-26 18:52:37",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_11494c38.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "7c4605e8",
+            "timestamp": "2026-05-26 18:52:39",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_7c4605e8.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "87b5c899",
+            "timestamp": "2026-05-26 18:52:41",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_87b5c899.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "e6f061f7",
+            "timestamp": "2026-05-26 18:52:42",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_e6f061f7.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "d8cfcc11",
+            "timestamp": "2026-05-26 18:52:44",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_d8cfcc11.png",
+            "occupancy_pct": 200.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "8f93ed13",
+            "timestamp": "2026-05-26 19:19:20",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_8f93ed13.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "9e55b00b",
+            "timestamp": "2026-05-26 19:19:23",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_9e55b00b.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "d38e249d",
+            "timestamp": "2026-05-26 19:19:26",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_d38e249d.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "7ff6e076",
+            "timestamp": "2026-05-26 19:19:28",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_7ff6e076.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "59993374",
+            "timestamp": "2026-05-26 19:19:32",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_59993374.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "59eb0025",
+            "timestamp": "2026-05-26 19:19:35",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_59eb0025.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "6f1011b6",
+            "timestamp": "2026-05-26 19:19:39",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 4,
+            "label": "person",
+            "image_name": "img_6f1011b6.png",
+            "occupancy_pct": 400.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "69c2314b",
+            "timestamp": "2026-05-26 19:19:43",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_69c2314b.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "6b65dd67",
+            "timestamp": "2026-05-26 19:19:46",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_6b65dd67.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "26a57711",
+            "timestamp": "2026-05-26 19:19:50",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 4,
+            "label": "person",
+            "image_name": "img_26a57711.png",
+            "occupancy_pct": 400.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "2d2eb782",
+            "timestamp": "2026-05-26 19:19:54",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 4,
+            "label": "person",
+            "image_name": "img_2d2eb782.png",
+            "occupancy_pct": 400.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "523fa80d",
+            "timestamp": "2026-05-26 19:19:58",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_523fa80d.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "f7dd70bf",
+            "timestamp": "2026-05-26 19:20:02",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 7,
+            "label": "person",
+            "image_name": "img_f7dd70bf.png",
+            "occupancy_pct": 700.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "27054c60",
+            "timestamp": "2026-05-26 19:20:06",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_27054c60.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "a396a9b5",
+            "timestamp": "2026-05-26 19:20:10",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 4,
+            "label": "person",
+            "image_name": "img_a396a9b5.png",
+            "occupancy_pct": 400.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "4dced25f",
+            "timestamp": "2026-05-26 19:20:13",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_4dced25f.png",
+            "occupancy_pct": 300.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "4d845ae3",
+            "timestamp": "2026-05-26 19:55:10",
+            "video_time": "00:00:02.520",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_4d845ae3.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "16b2db31",
+            "timestamp": "2026-05-26 19:55:12",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 27,
+            "label": "person",
+            "image_name": "img_16b2db31.png",
+            "occupancy_pct": 675.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "609144fc",
+            "timestamp": "2026-05-26 19:55:16",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 27,
+            "label": "person",
+            "image_name": "img_609144fc.png",
+            "occupancy_pct": 675.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "36119c23",
+            "timestamp": "2026-05-26 19:55:19",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 27,
+            "label": "person",
+            "image_name": "img_36119c23.png",
+            "occupancy_pct": 675.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "7e70e04e",
+            "timestamp": "2026-05-26 19:55:23",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 27,
+            "label": "person",
+            "image_name": "img_7e70e04e.png",
+            "occupancy_pct": 675.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "474a8293",
+            "timestamp": "2026-05-26 19:55:26",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 27,
+            "label": "person",
+            "image_name": "img_474a8293.png",
+            "occupancy_pct": 675.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "9e997852",
+            "timestamp": "2026-05-26 19:55:30",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 27,
+            "label": "person",
+            "image_name": "img_9e997852.png",
+            "occupancy_pct": 675.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "87ec62f1",
+            "timestamp": "2026-05-26 19:55:33",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 27,
+            "label": "person",
+            "image_name": "img_87ec62f1.png",
+            "occupancy_pct": 675.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "133117dc",
+            "timestamp": "2026-05-26 19:55:36",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 27,
+            "label": "person",
+            "image_name": "img_133117dc.png",
+            "occupancy_pct": 675.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "18a561a7",
+            "timestamp": "2026-05-26 19:55:38",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 27,
+            "label": "person",
+            "image_name": "img_18a561a7.png",
+            "occupancy_pct": 675.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "59200123",
+            "timestamp": "2026-05-26 19:55:41",
+            "video_time": "00:00:00.640",
+            "count": 23,
+            "label": "person",
+            "image_name": "img_59200123.png",
+            "occupancy_pct": 575.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "d2db24cc",
+            "timestamp": "2026-05-26 19:55:44",
+            "video_time": "00:00:02.160",
+            "count": 24,
+            "label": "person",
+            "image_name": "img_d2db24cc.png",
+            "occupancy_pct": 600.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "20ee77d1",
+            "timestamp": "2026-05-26 19:55:48",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_20ee77d1.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "96c9d47a",
+            "timestamp": "2026-05-26 19:55:51",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_96c9d47a.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "5924bdfb",
+            "timestamp": "2026-05-26 19:55:54",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_5924bdfb.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "657fdddf",
+            "timestamp": "2026-05-26 19:55:58",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_657fdddf.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "2bb0badb",
+            "timestamp": "2026-05-26 19:56:01",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_2bb0badb.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "ad54cc6b",
+            "timestamp": "2026-05-26 19:56:04",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_ad54cc6b.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "2264fdc1",
+            "timestamp": "2026-05-26 19:56:07",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_2264fdc1.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "0602f349",
+            "timestamp": "2026-05-26 19:56:11",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_0602f349.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "82926cbd",
+            "timestamp": "2026-05-26 19:56:13",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_82926cbd.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "244f03d7",
+            "timestamp": "2026-05-26 19:56:16",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_244f03d7.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "4c616511",
+            "timestamp": "2026-05-26 19:56:19",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_4c616511.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "1b50e4b2",
+            "timestamp": "2026-05-26 19:56:22",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_1b50e4b2.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "154c70e2",
+            "timestamp": "2026-05-26 19:56:25",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_154c70e2.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "3d59471f",
+            "timestamp": "2026-05-26 19:56:29",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_3d59471f.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "9552f0f0",
+            "timestamp": "2026-05-26 19:56:32",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_9552f0f0.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "8032720c",
+            "timestamp": "2026-05-26 19:56:36",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_8032720c.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "496eed1c",
+            "timestamp": "2026-05-26 19:56:39",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_496eed1c.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "cc332edc",
+            "timestamp": "2026-05-26 19:56:42",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_cc332edc.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "a2bfcaa1",
+            "timestamp": "2026-05-26 19:56:46",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_a2bfcaa1.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "3eb7bcc4",
+            "timestamp": "2026-05-26 19:56:49",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_3eb7bcc4.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "97fbd95a",
+            "timestamp": "2026-05-26 19:56:53",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_97fbd95a.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "a2b58ab1",
+            "timestamp": "2026-05-26 19:56:56",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_a2b58ab1.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "116728f6",
+            "timestamp": "2026-05-26 19:56:59",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_116728f6.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "56e54ee2",
+            "timestamp": "2026-05-26 19:57:02",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_56e54ee2.png",
+            "occupancy_pct": 500.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "4ed3ab8a",
+            "timestamp": "2026-05-26 19:57:20",
+            "video_time": "00:00:00.960",
+            "count": 25,
+            "label": "person",
+            "image_name": "img_4ed3ab8a.png",
+            "occupancy_pct": 125.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "99e008f2",
+            "timestamp": "2026-05-26 19:57:24",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_99e008f2.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "b497a735",
+            "timestamp": "2026-05-26 19:57:27",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_b497a735.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "f6660fc5",
+            "timestamp": "2026-05-26 19:57:31",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_f6660fc5.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "e26d609f",
+            "timestamp": "2026-05-26 19:57:34",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_e26d609f.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "d78b5159",
+            "timestamp": "2026-05-26 19:57:37",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_d78b5159.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "4cc736f5",
+            "timestamp": "2026-05-26 19:57:40",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_4cc736f5.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "f11a4f48",
+            "timestamp": "2026-05-26 19:57:44",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_f11a4f48.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "39577b14",
+            "timestamp": "2026-05-26 19:57:47",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_39577b14.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "f2ad5eab",
+            "timestamp": "2026-05-26 19:57:51",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_f2ad5eab.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "9a1fbf1e",
+            "timestamp": "2026-05-26 19:57:54",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_9a1fbf1e.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "3f0027d8",
+            "timestamp": "2026-05-26 19:57:57",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_3f0027d8.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "f9c671f2",
+            "timestamp": "2026-05-26 19:58:01",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_f9c671f2.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "85c62c41",
+            "timestamp": "2026-05-26 19:58:04",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_85c62c41.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "05f00848",
+            "timestamp": "2026-05-26 19:58:07",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_05f00848.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "ca0961f6",
+            "timestamp": "2026-05-26 19:58:11",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_ca0961f6.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "c03d42fa",
+            "timestamp": "2026-05-26 19:58:14",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_c03d42fa.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "17fa58d2",
+            "timestamp": "2026-05-26 19:58:18",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_17fa58d2.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "cd85fee2",
+            "timestamp": "2026-05-26 19:58:21",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_cd85fee2.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "7bd69049",
+            "timestamp": "2026-05-26 19:58:24",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_7bd69049.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "44b5c3b5",
+            "timestamp": "2026-05-26 19:58:27",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_44b5c3b5.png",
+            "occupancy_pct": 105.0,
+            "status": "Lotado"
+        },
+        {
+            "id": "c26917bc",
+            "timestamp": "2026-05-26 19:59:28",
+            "video_time": "00:00:02.400",
+            "count": 32,
+            "label": "person",
+            "image_name": "img_c26917bc.png",
+            "occupancy_pct": 160.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "03a8dac5",
+            "timestamp": "2026-05-26 19:59:44",
+            "video_time": "00:00:03.766",
+            "count": 31,
+            "label": "person",
+            "image_name": "img_03a8dac5.png",
+            "occupancy_pct": 155.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "edaa41d2",
+            "timestamp": "2026-05-26 19:59:54",
+            "video_time": "00:00:04.833",
+            "count": 26,
+            "label": "person",
+            "image_name": "img_edaa41d2.png",
+            "occupancy_pct": 130.0,
+            "status": "Superlotado"
+        },
+        {
+            "id": "0d4e544c",
+            "timestamp": "2026-05-26 20:01:28",
+            "video_time": "00:00:01.000",
+            "count": 26,
+            "label": "person",
+            "image_name": "img_0d4e544c.png",
+            "occupancy_pct": 86.7,
+            "status": "Normal"
+        },
+        {
+            "id": "d4f458a8",
+            "timestamp": "2026-05-26 20:01:32",
+            "video_time": "00:00:02.320",
+            "count": 20,
+            "label": "person",
+            "image_name": "img_d4f458a8.png",
+            "occupancy_pct": 66.7,
+            "status": "Normal"
+        },
+        {
+            "id": "fb721030",
+            "timestamp": "2026-05-26 20:01:36",
+            "video_time": "00:00:03.440",
+            "count": 22,
+            "label": "person",
+            "image_name": "img_fb721030.png",
+            "occupancy_pct": 73.3,
+            "status": "Normal"
+        },
+        {
+            "id": "475c49b3",
+            "timestamp": "2026-05-26 20:01:39",
+            "video_time": "00:00:04.640",
+            "count": 17,
+            "label": "person",
+            "image_name": "img_475c49b3.png",
+            "occupancy_pct": 56.7,
+            "status": "Normal"
+        },
+        {
+            "id": "dafbd951",
+            "timestamp": "2026-05-26 20:01:43",
+            "video_time": "00:00:05.760",
+            "count": 18,
+            "label": "person",
+            "image_name": "img_dafbd951.png",
+            "occupancy_pct": 60.0,
+            "status": "Normal"
+        },
+        {
+            "id": "bab334d2",
+            "timestamp": "2026-05-26 20:01:46",
+            "video_time": "00:00:06.960",
+            "count": 17,
+            "label": "person",
+            "image_name": "img_bab334d2.png",
+            "occupancy_pct": 56.7,
+            "status": "Normal"
+        },
+        {
+            "id": "7db41e94",
+            "timestamp": "2026-05-26 20:01:50",
+            "video_time": "00:00:08.200",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_7db41e94.png",
+            "occupancy_pct": 3.3,
+            "status": "Livre"
+        },
+        {
+            "id": "00de9443",
+            "timestamp": "2026-05-26 20:01:53",
+            "video_time": "00:00:09.360",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_00de9443.png",
+            "occupancy_pct": 3.3,
+            "status": "Livre"
+        },
+        {
+            "id": "a15a5cf3",
+            "timestamp": "2026-05-26 20:01:57",
+            "video_time": "00:00:10.480",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_a15a5cf3.png",
+            "occupancy_pct": 3.3,
+            "status": "Livre"
+        },
+        {
+            "id": "ef6f4a55",
+            "timestamp": "2026-05-26 20:02:00",
+            "video_time": "00:00:11.560",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_ef6f4a55.png",
+            "occupancy_pct": 6.7,
+            "status": "Livre"
+        },
+        {
+            "id": "121e825e",
+            "timestamp": "2026-05-26 20:02:03",
+            "video_time": "00:00:12.640",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_121e825e.png",
+            "occupancy_pct": 3.3,
+            "status": "Livre"
+        },
+        {
+            "id": "8def8ac0",
+            "timestamp": "2026-05-26 20:02:06",
+            "video_time": "Tempo Real (Câmera)",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_8def8ac0.png",
+            "occupancy_pct": 6.7,
+            "status": "Livre"
+        },
+        {
+            "id": "3cd57e58",
+            "timestamp": "2026-05-26 20:06:09",
+            "video_time": "00:00:00.920",
+            "count": 22,
+            "label": "person",
+            "image_name": "img_3cd57e58.png",
+            "occupancy_pct": 73.3,
+            "status": "Normal"
+        },
+        {
+            "id": "c0b6cc51",
+            "timestamp": "2026-05-26 20:06:13",
+            "video_time": "00:00:03.120",
+            "count": 21,
+            "label": "person",
+            "image_name": "img_c0b6cc51.png",
+            "occupancy_pct": 70.0,
+            "status": "Normal"
+        },
+        {
+            "id": "a43aad87",
+            "timestamp": "2026-05-26 20:06:18",
+            "video_time": "00:00:04.360",
+            "count": 18,
+            "label": "person",
+            "image_name": "img_a43aad87.png",
+            "occupancy_pct": 60.0,
+            "status": "Normal"
+        },
+        {
+            "id": "2defd4f0",
+            "timestamp": "2026-05-26 20:06:22",
+            "video_time": "00:00:05.640",
+            "count": 16,
+            "label": "person",
+            "image_name": "img_2defd4f0.png",
+            "occupancy_pct": 53.3,
+            "status": "Normal"
+        },
+        {
+            "id": "da6798c3",
+            "timestamp": "2026-05-26 20:06:25",
+            "video_time": "00:00:06.920",
+            "count": 15,
+            "label": "person",
+            "image_name": "img_da6798c3.png",
+            "occupancy_pct": 50.0,
+            "status": "Normal"
+        },
+        {
+            "id": "bf0cb80f",
+            "timestamp": "2026-05-26 20:06:28",
+            "video_time": "00:00:08.320",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_bf0cb80f.png",
+            "occupancy_pct": 10.0,
+            "status": "Livre"
+        },
+        {
+            "id": "f1568bda",
+            "timestamp": "2026-05-26 20:06:31",
+            "video_time": "00:00:09.400",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_f1568bda.png",
+            "occupancy_pct": 3.3,
+            "status": "Livre"
+        },
+        {
+            "id": "7ead2de3",
+            "timestamp": "2026-05-26 20:06:34",
+            "video_time": "00:00:10.800",
+            "count": 1,
+            "label": "person",
+            "image_name": "img_7ead2de3.png",
+            "occupancy_pct": 3.3,
+            "status": "Livre"
+        },
+        {
+            "id": "bf54b5f6",
+            "timestamp": "2026-05-26 20:06:37",
+            "video_time": "00:00:11.960",
+            "count": 3,
+            "label": "person",
+            "image_name": "img_bf54b5f6.png",
+            "occupancy_pct": 10.0,
+            "status": "Livre"
+        },
+        {
+            "id": "6ec87af2",
+            "timestamp": "2026-05-26 20:06:41",
+            "video_time": "00:00:13.080",
+            "count": 2,
+            "label": "person",
+            "image_name": "img_6ec87af2.png",
+            "occupancy_pct": 6.7,
+            "status": "Livre"
+        },
+        {
+            "id": "45122099",
+            "timestamp": "2026-05-26 20:06:44",
+            "video_time": "00:00:14.120",
+            "count": 13,
+            "label": "person",
+            "image_name": "img_45122099.png",
+            "occupancy_pct": 43.3,
+            "status": "Normal"
+        },
+        {
+            "id": "2b376770",
+            "timestamp": "2026-05-26 20:06:48",
+            "video_time": "00:00:15.320",
+            "count": 11,
+            "label": "person",
+            "image_name": "img_2b376770.png",
+            "occupancy_pct": 36.7,
+            "status": "Normal"
+        },
+        {
+            "id": "8e6b2462",
+            "timestamp": "2026-05-26 20:06:51",
+            "video_time": "00:00:16.800",
+            "count": 14,
+            "label": "person",
+            "image_name": "img_8e6b2462.png",
+            "occupancy_pct": 46.7,
+            "status": "Normal"
+        }
+    ]
+}

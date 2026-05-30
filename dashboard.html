@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetroVision IA - Painel de Controle de Lotação em Tempo Real</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-base: #0a0a0c;
+            --bg-surface: #121216;
+            --bg-card: #181820;
+            --border-color: #242430;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            
+            /* Status Colors */
+            --color-safe: #10b981;       /* Verde: Livre */
+            --color-moderate: #f59e0b;   /* Laranja: Normal */
+            --color-full: #ef4444;       /* Vermelho: Lotado */
+            --color-overcap: #a855f7;    /* Roxo: Superlotado (Lotação) */
+            --color-accent: #06b6d4;     /* Ciano */
+            
+            --glow-safe: rgba(16, 185, 129, 0.4);
+            --glow-moderate: rgba(245, 158, 11, 0.4);
+            --glow-full: rgba(239, 68, 68, 0.4);
+            --glow-overcap: rgba(168, 85, 247, 0.6);
+            --glow-accent: rgba(6, 182, 212, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-color) var(--bg-base);
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-outfit {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Layout Grid */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Header Premium */
+        header {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, #151520 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--color-accent);
+            box-shadow: 0 0 15px var(--glow-accent);
+        }
+
+        .header-title-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo-icon {
+            font-size: 32px;
+            background: rgba(6, 182, 212, 0.1);
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            color: var(--color-accent);
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+
+        .header-meta h1 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, #a5f3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-meta p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .live-badge {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            text-transform: uppercase;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            animation: blink 1s infinite alternate;
+            box-shadow: 0 0 8px #ef4444;
+        }
+
+        /* Train Section & Animation */
+        .train-section {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .section-header {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Subway Train Graphic */
+        .train-track {
+            background: linear-gradient(180deg, #1b1b22 0%, #111115 100%);
+            border-radius: 16px;
+            padding: 30px 20px;
+            position: relative;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            overflow-x: auto;
+        }
+
+        .train-track::after {
+            content: '';
+            position: absolute;
+            bottom: 24px;
+            left: 10px;
+            right: 10px;
+            height: 4px;
+            background: linear-gradient(to right, transparent, #3c3c4a, #3c3c4a, transparent);
+            border-radius: 2px;
+        }
+
+        .train-train {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            min-width: 900px;
+            justify-content: center;
+            padding-bottom: 12px;
+        }
+
+        .train-engine {
+            width: 80px;
+            height: 70px;
+            background: linear-gradient(135deg, #2a2b36 0%, #1e1f26 100%);
+            border: 1px solid #3c3d4a;
+            border-radius: 20px 4px 4px 4px;
+            position: relative;
+        }
+
+        .train-engine.tail {
+            border-radius: 4px 20px 4px 4px;
+            background: linear-gradient(225deg, #2a2b36 0%, #1e1f26 100%);
+        }
+
+        .train-engine::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            width: 25px;
+            height: 20px;
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid var(--color-accent);
+            border-radius: 10px 4px 4px 4px;
+            box-shadow: 0 0 10px var(--glow-accent);
+        }
+
+        .train-engine.tail::before {
+            left: unset;
+            right: 10px;
+            border-radius: 4px 10px 4px 4px;
+        }
+
+        .wagon {
+            flex: 1;
+            height: 75px;
+            background: #191a22;
+            border: 2px solid #2d2e3d;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .wagon.active {
+            border-color: var(--color-accent);
+            background: #1d1e2a;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.15), inset 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .wagon-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--color-safe);
+            opacity: 0.15;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1), background 0.8s ease;
+            z-index: 1;
+        }
+
+        .wagon-fill.safe { background: var(--color-safe); }
+        .wagon-fill.moderate { background: var(--color-moderate); }
+        .wagon-fill.full { background: var(--color-full); }
+        .wagon-fill.overcap { 
+            background: var(--color-overcap); 
+            animation: pulse-overcap 1.5s infinite alternate;
+        }
+
+        .wagon-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            z-index: 2;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .wagon.active .wagon-label {
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wagon.active .wagon-label::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--color-accent);
+        }
+
+        .wagon-metrics {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            z-index: 2;
+            position: relative;
+        }
+
+        .wagon-count {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .wagon-count span {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .wagon-pct {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: rgba(0,0,0,0.4);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Wheels below the wagon */
+        .wheels {
+            display: flex;
+            justify-content: space-around;
+            padding: 0 15px;
+            margin-top: 4px;
+        }
+
+        .wheel {
+            width: 12px;
+            height: 12px;
+            background: #2d2e3d;
+            border-radius: 50%;
+            border: 2px solid #15151b;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .wagon.active ~ .train-track::after {
+            background: red;
+        }
+
+        /* 3 Columns Grid Info */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Side Settings Card */
+        .side-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            height: fit-content;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .input-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-group label span {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .input-group input {
+            background: #181822;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--color-accent);
+        }
+
+        .apply-btn {
+            background: var(--color-accent);
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .apply-btn:hover {
+            opacity: 0.9;
+            box-shadow: 0 0 15px var(--glow-accent);
+        }
+
+        .reset-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .reset-btn:hover {
+            border-color: var(--text-secondary);
+            color: #ffffff;
+        }
+
+        /* Main Dashboard Workspace */
+        .workspace {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .stat-card-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-card-value {
+            font-size: 26px;
+            font-weight: 700;
+            margin-top: 8px;
+            color: #ffffff;
+        }
+
+        .stat-card-footer {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .stat-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        /* Active Wagon Detail Info Card */
+        .active-detail-card {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, #151522 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            position: relative;
+        }
+
+        .active-detail-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 100%;
+            background: radial-gradient(circle at 100% 50%, rgba(6,182,212,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .detail-status-pill {
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px var(--glow-accent);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s ease;
+        }
+
+        .detail-status-pill.safe {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--color-safe);
+            box-shadow: 0 0 20px var(--glow-safe);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .detail-status-pill.moderate {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--color-moderate);
+            box-shadow: 0 0 20px var(--glow-moderate);
+            border-color: rgba(245, 158, 11, 0.2);
+        }
+
+        .detail-status-pill.full {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--color-full);
+            box-shadow: 0 0 20px var(--glow-full);
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .detail-status-pill.overcap {
+            background: rgba(168, 85, 247, 0.15);
+            color: var(--color-overcap);
+            box-shadow: 0 0 20px var(--glow-overcap);
+            border-color: rgba(168, 85, 247, 0.2);
+            animation: glow-pulse-purple 1.5s infinite alternate;
+        }
+
+        .detail-description h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .detail-description p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* History Table Section */
+        .history-section {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            max-height: 480px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .history-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.2s, border-color 0.2s;
+            position: relative;
+        }
+
+        .history-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--color-accent);
+        }
+
+        .history-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-id {
+            font-size: 11px;
+            font-family: 'Courier New', Courier, monospace;
+            background: #111116;
+            padding: 3px 6px;
+            border-radius: 4px;
+            color: var(--color-accent);
+            border: 1px solid rgba(6,182,212,0.1);
+        }
+
+        .history-timestamp {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .history-card-body {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .history-count-large {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1;
+        }
+
+        .history-count-large span {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-left: 2px;
+        }
+
+        .history-status-badge {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .history-status-badge.safe { background: rgba(16, 185, 129, 0.1); color: var(--color-safe); }
+        .history-status-badge.moderate { background: rgba(245, 158, 11, 0.1); color: var(--color-moderate); }
+        .history-status-badge.full { background: rgba(239, 68, 68, 0.1); color: var(--color-full); }
+        .history-status-badge.overcap { background: rgba(168, 85, 247, 0.1); color: var(--color-overcap); }
+
+        .history-progress-container {
+            width: 100%;
+            height: 6px;
+            background: #101015;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .history-progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        .history-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            padding-top: 10px;
+        }
+
+        .history-video-time {
+            font-size: 11px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .view-image-btn {
+            background: rgba(255,255,255,0.05);
+            color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 5px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-image-btn:hover {
+            background: var(--color-accent);
+            color: #000000;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 10px var(--glow-accent);
+        }
+
+        /* Lightbox Overlay Modal */
+        .lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(4, 4, 6, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .lightbox-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-modal.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-header {
+            padding: 15px 25px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lightbox-title h4 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .lightbox-title p {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .close-lightbox-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+
+        .close-lightbox-btn:hover {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: #000000;
+        }
+
+        .lightbox-body {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #08080a;
+            max-height: 60vh;
+            min-height: 300px;
+            overflow: hidden;
+        }
+
+        .lightbox-body img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .lightbox-footer {
+            padding: 15px 25px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Empty State */
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 60px 20px;
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            gap: 15px;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            color: var(--text-muted);
+        }
+
+        /* Animations */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(6, 182, 212, 0.1); }
+            50% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); }
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes pulse-overcap {
+            0% { opacity: 0.1; }
+            100% { opacity: 0.45; }
+        }
+
+        @keyframes glow-pulse-purple {
+            0% { box-shadow: 0 0 10px rgba(168, 85, 247, 0.3); }
+            100% { box-shadow: 0 0 25px rgba(168, 85, 247, 0.7); }
+        }
+
+        /* Loading Spinner */
+        .loading-ring {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border-top-color: var(--color-accent);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Tabs System */
+        .dashboard-tabs {
+            display: flex;
+            gap: 12px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 5px;
+        }
+
+        .tab-link {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-link:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-link.active {
+            background: var(--color-accent);
+            color: #000000;
+            box-shadow: 0 0 15px var(--glow-accent);
+        }
+
+        .tab-link .tab-icon {
+            font-size: 16px;
+        }
+
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            opacity: 1;
+        }
+
+        /* Gallery Tab Styles */
+        .gallery-section {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .gallery-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .gallery-header p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .gallery-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-height: 800px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .gallery-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            gap: 25px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            align-items: center;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-img-container {
+            width: 320px;
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            position: relative;
+            cursor: pointer;
+            flex-shrink: 0;
+            background: #08080a;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-img-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-img-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            gap: 6px;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-img-container:hover .gallery-img-overlay {
+            opacity: 1;
+        }
+
+        .gallery-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .gallery-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 8px;
+        }
+
+        .gallery-item-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .gallery-item-time {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .gallery-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .gallery-meta-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .gallery-meta-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .gallery-meta-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .gallery-meta-value.highlight {
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        .gallery-item-badge {
+            align-self: center;
+            flex-shrink: 0;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 120px;
+        }
+
+        .gallery-item-badge.safe { background: rgba(16, 185, 129, 0.1); color: var(--color-safe); border-color: rgba(16, 185, 129, 0.2); }
+        .gallery-item-badge.moderate { background: rgba(245, 158, 11, 0.1); color: var(--color-moderate); border-color: rgba(245, 158, 11, 0.2); }
+        .gallery-item-badge.full { background: rgba(239, 68, 68, 0.1); color: var(--color-full); border-color: rgba(239, 68, 68, 0.2); }
+        .gallery-item-badge.overcap { background: rgba(168, 85, 247, 0.1); color: var(--color-overcap); border-color: rgba(168, 85, 247, 0.2); }
+
+        @media (max-width: 768px) {
+            .gallery-item {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .gallery-img-container {
+                width: 100%;
+                height: 200px;
+            }
+            .gallery-item-badge {
+                align-self: flex-start;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Dashboard Header -->
+        <header>
+            <div class="header-title-section">
+                <div class="header-logo-icon font-outfit">🚇</div>
+                <div class="header-meta">
+                    <h1>MetroVision IA</h1>
+                    <p>Mapeamento de Lotação por Câmera Computacional — Linha 01</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <div id="connection-status" class="live-badge" style="background: rgba(6,182,212,0.1); border-color: rgba(6,182,212,0.3); color: var(--color-accent);">
+                    <div class="loading-ring" style="margin-right: 5px;"></div>
+                    Sincronizando...
+                </div>
+                <div class="live-badge">
+                    <div class="live-dot"></div>
+                    Tempo Real
+                </div>
+            </div>
+        </header>
+
+        <!-- Seletor de Abas Premium -->
+        <nav class="dashboard-tabs">
+            <button class="tab-link active" onclick="switchTab('realtime-panel')">
+                <span class="tab-icon">🚇</span> Trem em Tempo Real
+            </button>
+            <button class="tab-link" onclick="switchTab('gallery-panel')">
+                <span class="tab-icon">📸</span> Registro Visual de Capturas
+            </button>
+        </nav>
+
+        <!-- Aba 1: Painel em Tempo Real -->
+        <div id="realtime-panel" class="tab-content active">
+            <!-- subway visual train -->
+            <section class="train-section">
+            <div class="section-header">
+                <h2>🚇 Lotação Atual da Composição — Trem A04</h2>
+                <div style="font-size: 12px; color: var(--text-secondary); background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 4px;">
+                    Vagão 01 em monitoramento ativo de passageiros
+                </div>
+            </div>
+            
+            <div class="train-track">
+                <div class="train-train">
+                    <!-- Engine (Left) -->
+                    <div class="train-engine"></div>
+                    
+                    <!-- Wagon 1 (Monitorado ativamente pela IA) -->
+                    <div class="wagon active" id="wagon-1">
+                        <div class="wagon-fill" id="wagon-1-fill"></div>
+                        <span class="wagon-label">Vagão 01 (Ativo)</span>
+                        <div class="wagon-metrics">
+                            <div class="wagon-count" id="wagon-1-count">0 <span>Pax</span></div>
+                            <div class="wagon-pct" id="wagon-1-pct">0%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wagon 2 (Estático / Histórico) -->
+                    <div class="wagon" id="wagon-2">
+                        <div class="wagon-fill safe" style="width: 20%; opacity: 0.15;"></div>
+                        <span class="wagon-label">Vagão 02</span>
+                        <div class="wagon-metrics">
+                            <div class="wagon-count">1 <span>Pax</span></div>
+                            <div class="wagon-pct">20%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wagon 3 (Estático / Histórico) -->
+                    <div class="wagon" id="wagon-3">
+                        <div class="wagon-fill moderate" style="width: 60%; opacity: 0.15;"></div>
+                        <span class="wagon-label">Vagão 03</span>
+                        <div class="wagon-metrics">
+                            <div class="wagon-count">3 <span>Pax</span></div>
+                            <div class="wagon-pct">60%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wagon 4 (Estático / Histórico) -->
+                    <div class="wagon" id="wagon-4">
+                        <div class="wagon-fill full" style="width: 100%; opacity: 0.15;"></div>
+                        <span class="wagon-label">Vagão 04</span>
+                        <div class="wagon-metrics">
+                            <div class="wagon-count">5 <span>Pax</span></div>
+                            <div class="wagon-pct">100%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tail Engine (Right) -->
+                    <div class="train-engine tail"></div>
+                </div>
+                
+                <!-- wheels below wagons -->
+                <div style="display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 900px; padding-left: 80px; padding-right: 80px;">
+                    <div style="flex: 1;"><div class="wheels"><div class="wheel"></div><div class="wheel"></div></div></div>
+                    <div style="flex: 1;"><div class="wheels"><div class="wheel"></div><div class="wheel"></div></div></div>
+                    <div style="flex: 1;"><div class="wheels"><div class="wheel"></div><div class="wheel"></div></div></div>
+                    <div style="flex: 1;"><div class="wheels"><div class="wheel"></div><div class="wheel"></div></div></div>
+                </div>
+            </div>
+            
+            <!-- Active Wagon details -->
+            <div class="active-detail-card" id="detail-card">
+                <div class="detail-description">
+                    <h3 id="detail-title">Processando dados...</h3>
+                    <p id="detail-desc">Aguardando a primeira medição de lote do processamento da câmera em tempo real.</p>
+                </div>
+                <div class="detail-status-pill safe" id="detail-status">Carregando</div>
+            </div>
+        </section>
+
+        <!-- bottom split workspace and settings -->
+        <div class="info-grid">
+            <!-- Settings panel (Persistent override) -->
+            <aside class="side-card">
+                <h3 style="font-size: 16px; font-weight: 700; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; color: var(--color-accent);">
+                    ⚙️ Ajuste de Lotação
+                </h3>
+                <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 5px;">
+                    Defina os limites de lotação que regem o gráfico e o comportamento do metrô.
+                </p>
+                
+                <!-- Seats Capacity -->
+                <div class="input-group">
+                    <label for="set-seats">Lugares (Assentos) <span id="label-seats">5</span></label>
+                    <input type="number" id="set-seats" value="5" min="1">
+                </div>
+                
+                <!-- Overcapacity Limit -->
+                <div class="input-group">
+                    <label for="set-overcap">Lotação (>x) <span id="label-overcap">5</span></label>
+                    <input type="number" id="set-overcap" value="5" min="0">
+                </div>
+                
+                <!-- Maximum Capacity (0-M) -->
+                <div class="input-group">
+                    <label for="set-max">Máximo Absoluto <span id="label-max">40</span></label>
+                    <input type="number" id="set-max" value="40" min="1">
+                </div>
+                
+                <!-- Start % Limit -->
+                <div class="input-group">
+                    <label for="set-start">Início Lotação (%) <span id="label-start">30%</span></label>
+                    <input type="number" id="set-start" value="30" min="0" max="100">
+                </div>
+                
+                <button class="apply-btn" id="apply-settings-btn">Aplicar Parâmetros</button>
+                <button class="reset-btn" id="reset-settings-btn">Importar da Câmera</button>
+            </aside>
+
+            <!-- Main stats & historical timeline -->
+            <main class="workspace">
+                <!-- Stats bar metrics -->
+                <div class="stats-bar">
+                    <div class="stat-card">
+                        <div class="stat-card-title">Média de Passageiros</div>
+                        <div class="stat-card-value" id="stat-avg">0.0</div>
+                        <div class="stat-card-footer">pessoas por medição</div>
+                        <div class="stat-badge" style="background: rgba(6,182,212,0.1); color: var(--color-accent);">👥</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-title">Pico de Ocupação</div>
+                        <div class="stat-card-value" id="stat-peak">0</div>
+                        <div class="stat-card-footer" id="stat-peak-time">Nenhum registro</div>
+                        <div class="stat-badge" style="background: rgba(239,68,68,0.1); color: var(--color-full);">🔥</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-title">Alertas Gerados</div>
+                        <div class="stat-card-value" id="stat-alerts">0</div>
+                        <div class="stat-card-footer">lotação e superlotado</div>
+                        <div class="stat-badge" style="background: rgba(168,85,247,0.1); color: var(--color-overcap);">⚠️</div>
+                    </div>
+                </div>
+
+                <!-- Snapshot History list -->
+                <section class="history-section">
+                    <h3 style="font-size: 16px; font-weight: 700; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; color: var(--text-primary);">
+                        📋 Histórico de Capturas e Medições IA
+                    </h3>
+                    <div class="history-grid" id="history-grid-container">
+                        <!-- Filled dynamically -->
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📸</div>
+                            <p>Aguardando registros de capturas da inteligência artificial.</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div> <!-- Fim de .info-grid -->
+    </div> <!-- Fim de #realtime-panel -->
+
+    <!-- Aba 2: Galeria de Capturas e Imagens com Máscaras -->
+    <div id="gallery-panel" class="tab-content">
+        <section class="gallery-section">
+            <div class="gallery-header">
+                <h2>📸 Galeria de Segmentação e Análise de Lotação (SAM 3.1)</h2>
+                <p>Histórico completo de frames capturados e mascarados pela inteligência artificial com os dados de processamento associados em tempo real.</p>
+            </div>
+            
+            <div class="gallery-list" id="gallery-list-container">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📸</div>
+                    <p>Aguardando registros de capturas da inteligência artificial.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    </div> <!-- Fim de .container -->
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="image-lightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-header">
+                <div class="lightbox-title">
+                    <h4 id="lightbox-pax-count">ID: -</h4>
+                    <p id="lightbox-meta">Data: - | Tempo Vídeo: -</p>
+                </div>
+                <button class="close-lightbox-btn" id="close-lightbox-btn">✕</button>
+            </div>
+            <div class="lightbox-body">
+                <img id="lightbox-image-element" src="" alt="Segmentação de Câmera">
+            </div>
+            <div class="lightbox-footer">
+                <span>Visualizador de Máscaras de Segmentação SAM 3.1</span>
+                <span id="lightbox-file-path">Caminho do arquivo</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de dados em tempo real -->
+    <script id="metro-data-script"></script>
+
+    <!-- Script de controle lógico do dashboard -->
+    <script>
+        // Configurações Locais do Dashboard
+        let currentSettings = {
+            capacity_seats: 5,
+            overcapacity_threshold: 5,
+            absolute_max: 40,
+            occupancy_start_pct: 30
+        };
+
+        // Cache das últimas configurações lidas do Python
+        let pythonSettings = null;
+
+        // Histórico de capturas lido
+        let localHistory = [];
+
+        // DOM Elements
+        const wagon1Fill = document.getElementById('wagon-1-fill');
+        const wagon1Count = document.getElementById('wagon-1-count');
+        const wagon1Pct = document.getElementById('wagon-1-pct');
+        
+        const detailCard = document.getElementById('detail-card');
+        const detailTitle = document.getElementById('detail-title');
+        const detailDesc = document.getElementById('detail-desc');
+        const detailStatus = document.getElementById('detail-status');
+
+        // Form Inputs
+        const inputSeats = document.getElementById('set-seats');
+        const inputOvercap = document.getElementById('set-overcap');
+        const inputMax = document.getElementById('set-max');
+        const inputStart = document.getElementById('set-start');
+        const applyBtn = document.getElementById('apply-settings-btn');
+        const resetBtn = document.getElementById('reset-settings-btn');
+
+        // Labels
+        const lblSeats = document.getElementById('label-seats');
+        const lblOvercap = document.getElementById('label-overcap');
+        const lblMax = document.getElementById('label-max');
+        const lblStart = document.getElementById('label-start');
+
+        // Stats
+        const statAvg = document.getElementById('stat-avg');
+        const statPeak = document.getElementById('stat-peak');
+        const statPeakTime = document.getElementById('stat-peak-time');
+        const statAlerts = document.getElementById('stat-alerts');
+        const connStatus = document.getElementById('connection-status');
+        const historyContainer = document.getElementById('history-grid-container');
+
+        // Lightbox
+        const lightbox = document.getElementById('image-lightbox');
+        const lightboxImage = document.getElementById('lightbox-image-element');
+        const lightboxPax = document.getElementById('lightbox-pax-count');
+        const lightboxMeta = document.getElementById('lightbox-meta');
+        const lightboxFile = document.getElementById('lightbox-file-path');
+        const closeLightbox = document.getElementById('close-lightbox-btn');
+
+        // 1. Carregador e Poller do script de dados
+        function reloadPythonData() {
+            // Remover script anterior para forçar recarga limpa
+            const oldScript = document.getElementById('metro-data-script');
+            if (oldScript) {
+                oldScript.remove();
+            }
+            
+            // Criar novo script com cache-busting
+            const script = document.createElement('script');
+            script.id = 'metro-data-script';
+            script.src = 'media/dados_dashboard.js?t=' + Date.now();
+            script.onerror = () => {
+                connStatus.innerHTML = '⚠️ Desconectado (Sem dados da câmera)';
+                connStatus.style.background = 'rgba(239,68,68,0.1)';
+                connStatus.style.color = '#ef4444';
+                connStatus.style.borderColor = 'rgba(239,68,68,0.3)';
+            };
+            script.onload = () => {
+                connStatus.innerHTML = '<span class="live-dot" style="margin-right: 5px; background-color: var(--color-safe); box-shadow: 0 0 8px var(--color-safe);"></span> Conectado';
+                connStatus.style.background = 'rgba(16,185,129,0.1)';
+                connStatus.style.color = 'var(--color-safe)';
+                connStatus.style.borderColor = 'rgba(16,185,129,0.3)';
+                
+                if (window.METRO_DATA) {
+                    processIncomingData(window.METRO_DATA);
+                }
+            };
+            document.body.appendChild(script);
+        }
+
+        // 2. Processa os dados recebidos do Python
+        function processIncomingData(data) {
+            pythonSettings = data.settings;
+            localHistory = data.history || [];
+
+            // Se for a primeira carga ou se o usuário clicar em redefinir, usa as configs do Python
+            if (!applyBtn.classList.contains('overridden')) {
+                currentSettings = { ...pythonSettings };
+                updateInputFields();
+            }
+
+            renderDashboard();
+        }
+
+        // 3. Atualiza os campos de inputs na lateral
+        function updateInputFields() {
+            inputSeats.value = currentSettings.capacity_seats;
+            inputOvercap.value = currentSettings.overcapacity_threshold;
+            inputMax.value = currentSettings.absolute_max;
+            inputStart.value = currentSettings.occupancy_start_pct;
+
+            lblSeats.innerText = currentSettings.capacity_seats;
+            lblOvercap.innerText = currentSettings.overcapacity_threshold;
+            lblMax.innerText = currentSettings.absolute_max;
+            lblStart.innerText = currentSettings.occupancy_start_pct + '%';
+        }
+
+        // 4. Renderiza toda a interface do Dashboard com base no histórico
+        function renderDashboard() {
+            if (localHistory.length === 0) {
+                renderEmptyState();
+                return;
+            }
+
+            // A última contagem é o registro mais recente (último elemento do histórico)
+            const latest = localHistory[localHistory.length - 1];
+            
+            // Recalcular métricas de acordo com as regras ativas de lotação
+            const count = latest.count;
+            const cap = currentSettings.capacity_seats;
+            const overcap = currentSettings.overcapacity_threshold;
+            const max = currentSettings.absolute_max;
+            const startPct = currentSettings.occupancy_start_pct;
+
+            // Porcentagem de preenchimento (escala vai de 0 a Máximo Absoluto)
+            let fillPct = 0;
+            if (max > 0) {
+                fillPct = Math.min((count / max) * 100, 100);
+            }
+            
+            // Porcentagem de ocupação
+            let occupancyPct = 0;
+            if (cap > 0) {
+                occupancyPct = Math.round((count / cap) * 100);
+            }
+
+            // Determinar status de lotação
+            let status = 'Livre';
+            let statusClass = 'safe';
+            let statusMsg = '';
+            
+            const startVal = cap * (startPct / 100);
+
+            if (count <= startVal) {
+                status = 'Livre';
+                statusClass = 'safe';
+                statusMsg = 'Ocupação muito baixa. Conforto total para os passageiros.';
+            } else if (count <= cap) {
+                status = 'Normal';
+                statusClass = 'moderate';
+                statusMsg = 'Ocupação média dentro dos assentos disponíveis.';
+            } else if (count <= overcap) {
+                status = 'Lotado';
+                statusClass = 'full';
+                statusMsg = 'Capacidade de assentos esgotada. Passageiros em pé detectados.';
+            } else {
+                status = 'Superlotado';
+                statusClass = 'overcap';
+                statusMsg = 'ATENÇÃO: Lotação crítica detectada! Limite de capacidade excedido.';
+            }
+
+            // Atualizar Vagão 01 (Ativo) na composição
+            wagon1Fill.className = 'wagon-fill ' + statusClass;
+            wagon1Fill.style.width = fillPct + '%';
+            wagon1Count.innerHTML = count + ' <span>Pax</span>';
+            wagon1Pct.innerText = occupancyPct + '%';
+
+            // Atualizar Detalhes
+            detailTitle.innerText = `Vagão 01 — Monitoramento de "${latest.label.toUpperCase()}"`;
+            detailDesc.innerText = `Timestamp: ${latest.timestamp} | Tempo do Vídeo: ${latest.video_time} | ${statusMsg}`;
+            detailStatus.className = 'detail-status-pill ' + statusClass;
+            detailStatus.innerText = status;
+
+            // Atualizar Estatísticas Globais
+            calculateStats(cap, overcap, startVal);
+
+            // Renderizar Histórico de Medições
+            renderHistoryGrid();
+
+            // Renderizar Galeria de Imagens e Máscaras
+            renderGalleryList();
+        }
+
+        // Calcula estatísticas consolidadas
+        function calculateStats(cap, overcap, startVal) {
+            let total = 0;
+            let peak = 0;
+            let peakTime = 'Nenhum registro';
+            let alertCount = 0;
+
+            localHistory.forEach(item => {
+                total += item.count;
+                if (item.count > peak) {
+                    peak = item.count;
+                    peakTime = item.timestamp.split(' ')[1] + ' (' + item.video_time + ')';
+                }
+                
+                // Contar alertas baseando-se nos parâmetros ativos
+                if (item.count > cap) {
+                    alertCount++;
+                }
+            });
+
+            const avg = total / localHistory.length;
+            statAvg.innerText = avg.toFixed(1);
+            statPeak.innerText = peak;
+            statPeakTime.innerText = `Pico às: ${peakTime}`;
+            statAlerts.innerText = alertCount;
+        }
+
+        // Renderiza o grid de cartões de histórico
+        function renderHistoryGrid() {
+            historyContainer.innerHTML = '';
+            
+            // Exibir em ordem reversa (mais recente primeiro)
+            const reversed = [...localHistory].reverse();
+
+            reversed.forEach(item => {
+                const cap = currentSettings.capacity_seats;
+                const overcap = currentSettings.overcapacity_threshold;
+                const max = currentSettings.absolute_max;
+                const startPct = currentSettings.occupancy_start_pct;
+
+                let occPct = 0;
+                if (cap > 0) occPct = Math.round((item.count / cap) * 100);
+
+                let fillPct = 0;
+                if (max > 0) fillPct = Math.min((item.count / max) * 100, 100);
+
+                let status = 'Livre';
+                let statusClass = 'safe';
+                const startVal = cap * (startPct / 100);
+
+                if (item.count <= startVal) {
+                    status = 'Livre';
+                    statusClass = 'safe';
+                } else if (item.count <= cap) {
+                    status = 'Normal';
+                    statusClass = 'moderate';
+                } else if (item.count <= overcap) {
+                    status = 'Lotado';
+                    statusClass = 'full';
+                } else {
+                    status = 'Superlotado';
+                    statusClass = 'overcap';
+                }
+
+                const card = document.createElement('div');
+                card.className = 'history-card';
+                card.innerHTML = `
+                    <div class="history-card-header">
+                        <span class="history-id">ID: ${item.id}</span>
+                        <span class="history-timestamp">${item.timestamp.split(' ')[1]}</span>
+                    </div>
+                    <div class="history-card-body">
+                        <div class="history-count-large">
+                            ${item.count} <span>Pax</span>
+                        </div>
+                        <span class="history-status-badge ${statusClass}">${status}</span>
+                    </div>
+                    <div class="history-progress-container">
+                        <div class="history-progress-fill ${statusClass}" style="width: ${fillPct}%; background-color: var(--color-${statusClass});"></div>
+                    </div>
+                    <div class="history-card-footer">
+                        <div class="history-video-time">
+                            ⏱️ ${item.video_time}
+                        </div>
+                        <button class="view-image-btn" onclick="openImageLightbox('${item.id}', '${item.image_name}', ${item.count}, '${item.timestamp}', '${item.video_time}')">
+                            Ver Captura
+                        </button>
+                    </div>
+                `;
+                historyContainer.appendChild(card);
+            });
+        }
+
+        function renderEmptyState() {
+            wagon1Fill.style.width = '0%';
+            wagon1Count.innerHTML = '0 <span>Pax</span>';
+            wagon1Pct.innerText = '0%';
+            detailTitle.innerText = 'Nenhum registro de processamento';
+            detailDesc.innerText = 'Ligue o ciclo de captura e processamento do SAM 3.1 no aplicativo desktop.';
+            detailStatus.className = 'detail-status-pill safe';
+            detailStatus.innerText = 'Sem Dados';
+            
+            statAvg.innerText = '0.0';
+            statPeak.innerText = '0';
+            statPeakTime.innerText = 'Nenhum registro';
+            statAlerts.innerText = '0';
+
+            historyContainer.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">📸</div>
+                    <p>Aguardando registros de capturas da inteligência artificial.</p>
+                </div>
+            `;
+
+            const galleryContainer = document.getElementById('gallery-list-container');
+            if (galleryContainer) {
+                galleryContainer.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📸</div>
+                        <p>Aguardando registros de capturas da inteligência artificial.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // 5. Lightbox Modal controllers
+        function openImageLightbox(id, imageName, count, timestamp, videoTime) {
+            lightboxPax.innerText = `ID: ${id} — Detecção de ${count} passageiro(s)`;
+            lightboxMeta.innerText = `Data: ${timestamp} | Local do Vídeo: ${videoTime}`;
+            lightboxFile.innerText = `Caminho local: media/capturas/${imageName}`;
+            
+            // O caminho da imagem é local e relativo ao dashboard.html
+            lightboxImage.src = `media/capturas/${imageName}?t=${Date.now()}`; // cache busting na imagem
+            
+            lightbox.classList.add('active');
+        }
+
+        function closeImageLightbox() {
+            lightbox.classList.remove('active');
+            lightboxImage.src = ''; // Limpa referência de memória
+        }
+
+        // 8. Sistema de Abas (Tabs Control)
+        function switchTab(tabId) {
+            // Remove active de todas as abas
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-link').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Ativa a aba e o botão correspondente
+            const activeTab = document.getElementById(tabId);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+            
+            // Encontrar o botão correspondente
+            const activeBtn = Array.from(document.querySelectorAll('.tab-link')).find(btn => {
+                return btn.getAttribute('onclick').includes(tabId);
+            });
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        }
+
+        // 9. Renderiza a aba de Galeria de Imagens e Máscaras
+        function renderGalleryList() {
+            const galleryContainer = document.getElementById('gallery-list-container');
+            if (!galleryContainer) return;
+            
+            if (localHistory.length === 0) {
+                galleryContainer.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📸</div>
+                        <p>Aguardando registros de capturas da inteligência artificial.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            galleryContainer.innerHTML = '';
+            
+            // Exibir em ordem reversa (mais recente primeiro)
+            const reversed = [...localHistory].reverse();
+            
+            reversed.forEach(item => {
+                const cap = currentSettings.capacity_seats;
+                const overcap = currentSettings.overcapacity_threshold;
+                const startPct = currentSettings.occupancy_start_pct;
+                
+                let occPct = 0;
+                if (cap > 0) occPct = Math.round((item.count / cap) * 100);
+                
+                let status = 'Livre';
+                let statusClass = 'safe';
+                let statusMsg = 'Ocupação muito baixa. Conforto total.';
+                const startVal = cap * (startPct / 100);
+                
+                if (item.count <= startVal) {
+                    status = 'Livre';
+                    statusClass = 'safe';
+                    statusMsg = 'Conforto total para os passageiros.';
+                } else if (item.count <= cap) {
+                    status = 'Normal';
+                    statusClass = 'moderate';
+                    statusMsg = 'Ocupação média dentro dos assentos.';
+                } else if (item.count <= overcap) {
+                    status = 'Lotado';
+                    statusClass = 'full';
+                    statusMsg = 'Capacidade de assentos esgotada.';
+                } else {
+                    status = 'Superlotado';
+                    statusClass = 'overcap';
+                    statusMsg = 'Capacidade de lotação absoluta excedida.';
+                }
+                
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <!-- Preview da Imagem Salva com Máscara -->
+                    <div class="gallery-img-container" onclick="openImageLightbox('${item.id}', '${item.image_name}', ${item.count}, '${item.timestamp}', '${item.video_time}')">
+                        <img src="media/capturas/${item.image_name}?t=${Date.now()}" alt="Captura ${item.id}">
+                        <div class="gallery-img-overlay">🔍 Tela Cheia</div>
+                    </div>
+                    
+                    <!-- Dados Processados na Imagem -->
+                    <div class="gallery-info">
+                        <div class="gallery-info-header">
+                            <span class="gallery-item-title">Detecção de Classe "${item.label.toUpperCase()}"</span>
+                            <span class="gallery-item-time">⏱️ ${item.timestamp}</span>
+                        </div>
+                        
+                        <div class="gallery-meta-grid">
+                            <div class="gallery-meta-box">
+                                <span class="gallery-meta-label">ID Único da Captura</span>
+                                <span class="gallery-meta-value highlight">${item.id}</span>
+                            </div>
+                            <div class="gallery-meta-box">
+                                <span class="gallery-meta-label">Localização no Vídeo</span>
+                                <span class="gallery-meta-value">⏱️ ${item.video_time}</span>
+                            </div>
+                            <div class="gallery-meta-box">
+                                <span class="gallery-meta-label">Quantidade Detectada</span>
+                                <span class="gallery-meta-value">${item.count} passageiros</span>
+                            </div>
+                            <div class="gallery-meta-box">
+                                <span class="gallery-meta-label">Ocupação Relativa</span>
+                                <span class="gallery-meta-value">${occPct}% da capacidade</span>
+                            </div>
+                        </div>
+                        
+                        <p style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">
+                            <strong>Diagnóstico de Tráfego:</strong> ${statusMsg}
+                        </p>
+                    </div>
+                    
+                    <!-- Badge de Lotação -->
+                    <div class="gallery-item-badge ${statusClass}">
+                        ${status}
+                    </div>
+                `;
+                
+                galleryContainer.appendChild(galleryItem);
+            });
+        }
+
+        // Event listeners
+        closeLightbox.addEventListener('click', closeImageLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeImageLightbox();
+            }
+        });
+
+        // 6. Settings Inputs - Event Listeners
+        applyBtn.addEventListener('click', () => {
+            const seats = parseInt(inputSeats.value);
+            const overcap = parseInt(inputOvercap.value);
+            const max = parseInt(inputMax.value);
+            const start = parseInt(inputStart.value);
+
+            if (isNaN(seats) || isNaN(overcap) || isNaN(max) || isNaN(start)) {
+                alert('Preencha todos os campos com números válidos.');
+                return;
+            }
+
+            currentSettings = {
+                capacity_seats: seats,
+                overcapacity_threshold: overcap,
+                absolute_max: max,
+                occupancy_start_pct: start
+            };
+
+            applyBtn.classList.add('overridden');
+            applyBtn.innerText = 'Parâmetros Ativos (Override)';
+            applyBtn.style.background = 'var(--color-safe)';
+            applyBtn.style.color = '#000000';
+
+            updateInputFields();
+            renderDashboard();
+        });
+
+        resetBtn.addEventListener('click', () => {
+            applyBtn.classList.remove('overridden');
+            applyBtn.innerText = 'Aplicar Parâmetros';
+            applyBtn.style.background = 'var(--color-accent)';
+            applyBtn.style.color = '#000000';
+
+            if (pythonSettings) {
+                currentSettings = { ...pythonSettings };
+                updateInputFields();
+                renderDashboard();
+            }
+        });
+
+        // Eventos de mudanças dinâmicas nos sliders locais
+        inputSeats.addEventListener('input', (e) => { lblSeats.innerText = e.target.value; });
+        inputOvercap.addEventListener('input', (e) => { lblOvercap.innerText = e.target.value; });
+        inputMax.addEventListener('input', (e) => { lblMax.innerText = e.target.value; });
+        inputStart.addEventListener('input', (e) => { lblStart.innerText = e.target.value + '%'; });
+
+        // 7. Polling em Tempo Real (Loop a cada 1 segundo)
+        reloadPythonData();
+        setInterval(reloadPythonData, 1000); // Sincroniza em background
+    </script>
+</body>
+</html>
